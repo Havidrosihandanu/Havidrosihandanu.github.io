@@ -516,48 +516,52 @@ section {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    width: 100%; /* pastikan penuh layar */
+    padding: 0 15px; /* Add horizontal padding */
+    width: 100%;
   }
 
   .card {
-    width: 95%;          /* lebih kecil dari viewport */
-    max-width: 400px;    /* batasi lebar card */
-    margin: 0 auto 20px; /* center card */
-    min-height: auto;    /* biar ikut isi */
+    width: 100%; /* Make card take full width of container */
+    max-width: 100%; /* Remove any max-width restrictions */
+    margin: 0 0 20px; /* Keep bottom margin only */
+    min-height: auto;
     box-sizing: border-box;
+    border-radius: 8px; /* Slightly smaller radius for mobile */
   }
 
   .card-image-slider {
-    height: auto; /* biar tinggi ikut rasio gambar */
-    max-height: 220px; /* batasin biar nggak terlalu tinggi */
+    height: 180px; /* Fixed height for consistency */
+    max-height: 180px;
   }
 
-  .card-images img {
-    width: 100%;
-    height: auto;       /* biar nggak ketarik */
-    object-fit: contain;
+  .card-content {
+    padding: 20px 15px; /* Slightly less padding on mobile */
+  }
+
+  .carousel-button {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
   }
 }
 
 @media (max-width: 480px) {
   .card {
-    width: 100%;
-    max-width: 350px;
-    margin: 0 auto 15px;
+    margin: 0 0 15px;
   }
 
   .card-image-slider {
-    max-height: 180px;
+    height: 150px;
+    max-height: 150px;
   }
 
-  .title-section {
-    font-size: 1.5rem;
-    margin-bottom: 25px;
+  .card h3 {
+    font-size: 1.3rem;
   }
 
-  .project-link {
-    padding: 8px 16px;
-    font-size: 0.85rem;
+  .card p {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
   }
 }
 
