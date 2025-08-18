@@ -317,7 +317,6 @@ section {
 }
 
 /* --- Project Section --- */
-/* --- Project Section --- */
 .project-section {
   background-color: #f8f9fa;
   color: #0a273f;
@@ -347,6 +346,8 @@ section {
   max-width: 1200px;
   margin: 0 auto 40px;
   overflow: hidden;
+   overflow-x: hidden;
+  overflow-y: visible; 
 }
 
 .carousel-track {
@@ -514,27 +515,49 @@ section {
   .carousel-slide {
     flex-direction: column;
     align-items: center;
+    gap: 20px;
+    width: 100%; /* pastikan penuh layar */
   }
-  
+
   .card {
-    width: 80%;
-    margin-bottom: 30px;
+    width: 95%;          /* lebih kecil dari viewport */
+    max-width: 400px;    /* batasi lebar card */
+    margin: 0 auto 20px; /* center card */
+    min-height: auto;    /* biar ikut isi */
+    box-sizing: border-box;
   }
-  
-  .carousel-button {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+
+  .card-image-slider {
+    height: auto; /* biar tinggi ikut rasio gambar */
+    max-height: 220px; /* batasin biar nggak terlalu tinggi */
+  }
+
+  .card-images img {
+    width: 100%;
+    height: auto;       /* biar nggak ketarik */
+    object-fit: contain;
   }
 }
 
 @media (max-width: 480px) {
   .card {
-    width: 95%;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto 15px;
   }
-  
+
+  .card-image-slider {
+    max-height: 180px;
+  }
+
   .title-section {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+  }
+
+  .project-link {
+    padding: 8px 16px;
+    font-size: 0.85rem;
   }
 }
 
