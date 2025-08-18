@@ -512,56 +512,77 @@ section {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .project-section {
+    padding: 40px 10px; /* Reduced padding on mobile */
+  }
+
+  .carousel-container {
+    width: 100%;
+    padding: 0 10px; /* Add padding to container */
+  }
+
   .carousel-slide {
     flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 0 15px; /* Add horizontal padding */
+    align-items: stretch; /* Changed from center to stretch */
+    gap: 15px;
+    padding: 0;
     width: 100%;
   }
 
   .card {
-    width: 100%; /* Make card take full width of container */
-    max-width: 100%; /* Remove any max-width restrictions */
-    margin: 0 0 20px; /* Keep bottom margin only */
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto 15px;
     min-height: auto;
-    box-sizing: border-box;
-    border-radius: 8px; /* Slightly smaller radius for mobile */
-  }
-
-  .card-image-slider {
-    height: 180px; /* Fixed height for consistency */
-    max-height: 180px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(14, 81, 163, 0.1); /* Lighter shadow for mobile */
   }
 
   .card-content {
-    padding: 20px 15px; /* Slightly less padding on mobile */
-  }
-
-  .carousel-button {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .card {
-    margin: 0 0 15px;
-  }
-
-  .card-image-slider {
-    height: 150px;
-    max-height: 150px;
+    padding: 15px;
   }
 
   .card h3 {
     font-size: 1.3rem;
+    margin-bottom: 10px;
   }
 
   .card p {
     font-size: 0.9rem;
-    margin-bottom: 20px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    word-break: break-word; /* Prevent long words from overflowing */
+    overflow-wrap: break-word; /* Alternative property for word breaking */
+  }
+}
+
+@media (max-width: 480px) {
+  .project-section {
+    padding: 30px 8px;
+  }
+
+  .carousel-container {
+    padding: 0 8px;
+  }
+
+  .card {
+    margin: 0 auto 12px;
+  }
+
+  .card-image-slider {
+    height: 140px;
+  }
+
+  .card-content {
+    padding: 12px;
+  }
+
+  .card h3 {
+    font-size: 1.2rem;
+  }
+
+  .card p {
+    font-size: 0.85rem;
   }
 }
 
