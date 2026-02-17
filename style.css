@@ -604,15 +604,7 @@ section {
   gap: 30px;
   padding: 20px; /* Add some padding around the cards */
   width: max-content; /* Allows content to exceed viewport */
-  animation: scroll 30s linear infinite; /* Adjust speed as needed */
-  /* Opsional: Untuk efek fade di tepi scroll */
-  /* mask-image: linear-gradient(
-      to right,
-      transparent,
-      black 5%,
-      black 95%,
-      transparent
-    ); */
+    will-change: transform;
 }
 
 .certificate-section-row:hover {
