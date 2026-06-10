@@ -35,6 +35,199 @@
     body {
       cursor: url("assets/img/cursor.png"), auto;
     }
+
+    /* Hover animations for profile image and figma name textbox */
+    .profile-image {
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    }
+    .profile-image:hover {
+      transform: translateY(-8px) scale(1.05) rotate(2deg) !important;
+      filter: drop-shadow(0 20px 30px rgba(24, 160, 251, 0.25)) !important;
+    }
+
+    .figma-name-textbox {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    }
+    .figma-name-textbox:hover {
+      transform: scale(1.04) rotate(0deg) !important;
+      box-shadow: 0 25px 50px rgba(24, 160, 251, 0.18) !important;
+      border-color: #1d4ed8 !important;
+    }
+    .figma-name-textbox:hover .figma-handle {
+      background-color: #18A0FB !important;
+      transform: scale(1.25);
+      transition: all 0.3s ease;
+    }
+    .figma-name-textbox:hover .figma-cursor {
+      transform: translate(-4px, -4px) scale(1.1) !important;
+    }
+    .figma-cursor {
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    }
+
+    /* Hover animations for stats, campus, and philosophy cards */
+    @keyframes numberPulse {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.18) translateY(-2px);
+      }
+    }
+
+    @keyframes capToss {
+      0% {
+        transform: translateY(0) rotate(0) scale(1);
+      }
+      30% {
+        transform: translateY(-10px) rotate(-15deg) scale(1.2);
+      }
+      65% {
+        transform: translateY(-2px) rotate(10deg) scale(1.1);
+      }
+      100% {
+        transform: translateY(0) rotate(0) scale(1);
+      }
+    }
+
+    .experience-card, .project-done-card, .campus-card, .philosophy-card {
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-image 0.1s ease !important;
+      background-position: center;
+      background-size: 100% 100%;
+    }
+
+    /* Experience Card Hover */
+    .experience-card:hover, .experience-card.hover-debug {
+      transform: translateY(-10px) scale(1.05) !important;
+      border-color: #A259FF !important;
+      background-color: #ffffff !important;
+      background-image: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(162, 89, 255, 0.08) 0%, rgba(255, 255, 255, 1) 80%) !important;
+      box-shadow: 0 20px 40px rgba(162, 89, 255, 0.15) !important;
+    }
+    .experience-card:hover .stat-number, .experience-card.hover-debug .stat-number {
+      animation: numberPulse 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite alternate;
+      color: #A259FF !important;
+      display: inline-block;
+    }
+    .experience-card .figma-handle {
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    .experience-card:hover .figma-handle, .experience-card.hover-debug .figma-handle {
+      opacity: 1 !important;
+      border-color: #A259FF !important;
+      transform: scale(1.2) rotate(45deg);
+      background-color: white !important;
+    }
+    .experience-card .figma-cursor {
+      opacity: 0;
+      transform: scale(0.75) translate(-16px, -16px);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    }
+    .experience-card:hover .figma-cursor, .experience-card.hover-debug .figma-cursor {
+      opacity: 1 !important;
+      transform: scale(1) translate(0) !important;
+    }
+
+    /* Projects Done Card Hover */
+    .project-done-card:hover, .project-done-card.hover-debug {
+      transform: translateY(-10px) scale(1.05) !important;
+      border-color: #F24E1E !important;
+      background-color: #ffffff !important;
+      background-image: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(242, 78, 30, 0.08) 0%, rgba(255, 255, 255, 1) 80%) !important;
+      box-shadow: 0 20px 40px rgba(242, 78, 30, 0.15) !important;
+    }
+    .project-done-card:hover .stat-number, .project-done-card.hover-debug .stat-number {
+      animation: numberPulse 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite alternate;
+      color: #F24E1E !important;
+      display: inline-block;
+    }
+    .project-done-card .figma-handle {
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    .project-done-card:hover .figma-handle, .project-done-card.hover-debug .figma-handle {
+      opacity: 1 !important;
+      border-color: #F24E1E !important;
+      transform: scale(1.2) rotate(45deg);
+      background-color: white !important;
+    }
+    .project-done-card .figma-cursor {
+      opacity: 0;
+      transform: scale(0.75) translate(16px, -16px);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    }
+    .project-done-card:hover .figma-cursor, .project-done-card.hover-debug .figma-cursor {
+      opacity: 1 !important;
+      transform: scale(1) translate(0) !important;
+    }
+
+    /* Campus Card Hover */
+    .campus-card:hover, .campus-card.hover-debug {
+      transform: translateY(-10px) scale(1.03) !important;
+      border-color: #FF7000 !important;
+      background-color: #ffffff !important;
+      background-image: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 112, 0, 0.08) 0%, rgba(255, 255, 255, 1) 80%) !important;
+      box-shadow: 0 20px 40px rgba(255, 112, 0, 0.15) !important;
+    }
+    .campus-card:hover .w-12, .campus-card.hover-debug .w-12 {
+      background-color: #FF7000 !important;
+      box-shadow: 0 8px 20px rgba(255, 112, 0, 0.25);
+      transform: scale(1.1);
+    }
+    .campus-card:hover .fa-graduation-cap, .campus-card.hover-debug .fa-graduation-cap {
+      animation: capToss 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite alternate;
+      color: #ffffff !important;
+    }
+    .campus-card .figma-handle {
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    .campus-card:hover .figma-handle, .campus-card.hover-debug .figma-handle {
+      opacity: 1 !important;
+      border-color: #FF7000 !important;
+      transform: scale(1.2) rotate(45deg);
+      background-color: white !important;
+    }
+    .campus-card .figma-cursor {
+      opacity: 0;
+      transform: scale(0.75) translate(-16px, 16px);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    }
+    .campus-card:hover .figma-cursor, .campus-card.hover-debug .figma-cursor {
+      opacity: 1 !important;
+      transform: scale(1) translate(0) !important;
+    }
+
+    /* Philosophy Card Hover */
+    .philosophy-card {
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    }
+    .philosophy-card:hover, .philosophy-card.hover-debug {
+      transform: translateY(-10px) scale(1.02) !important;
+      border-color: #04D27F !important;
+      background-color: #ffffff !important;
+      background-image: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(4, 210, 127, 0.08) 0%, rgba(255, 255, 255, 1) 80%) !important;
+      box-shadow: 0 30px 60px rgba(4, 210, 127, 0.18) !important;
+    }
+    .philosophy-card:hover h3, .philosophy-card.hover-debug h3 {
+      color: #04D27F !important;
+    }
+    .philosophy-card:hover .figma-handle, .philosophy-card.hover-debug .figma-handle {
+      border-color: #04D27F !important;
+      transform: scale(1.3) rotate(45deg) !important;
+      background-color: white !important;
+      transition: all 0.3s ease;
+    }
+    .philosophy-card .figma-cursor {
+      opacity: 0;
+      transform: scale(0.75) translate(16px, 16px);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    }
+    .philosophy-card:hover .figma-cursor, .philosophy-card.hover-debug .figma-cursor {
+      opacity: 1 !important;
+      transform: scale(1) translate(0) !important;
+    }
     
     a, button, [role="button"], .dot, .carousel-dot, .toolbar-btn {
       cursor: pointer;
@@ -374,7 +567,7 @@
         <img src="./assets/img/havid.png" alt="Havid Rosihandanu" class="profile-image relative w-[250px] h-auto object-cover z-[4] max-md:w-[200px] max-xs:w-[180px]" />
         
         <!-- Modernized Figma Selection-style Textbox (Name flip animation kept) -->
-        <div class="relative z-[6] w-fit min-w-[450px] px-8 py-4 flex justify-center items-center text-center -mt-[30px] -rotate-3 bg-white border-2 border-[#18A0FB] rounded-none shadow-[0_15px_30px_rgba(24,160,251,0.12)] max-md:min-w-[280px] max-md:-mt-[20px] max-xs:min-w-[240px] max-xs:-mt-[15px]">
+        <div class="figma-name-textbox relative z-[6] w-fit min-w-[450px] px-8 py-4 flex justify-center items-center text-center -mt-[30px] -rotate-3 bg-white border-2 border-[#18A0FB] rounded-none shadow-[0_15px_30px_rgba(24,160,251,0.12)] max-md:min-w-[280px] max-md:-mt-[20px] max-xs:min-w-[240px] max-xs:-mt-[15px]">
           <!-- Figma corner selection handles -->
           <div class="figma-handle -top-[5px] -left-[5px]"></div>
           <div class="figma-handle -top-[5px] -right-[5px]"></div>
@@ -384,11 +577,11 @@
           <h1 class="skewed-text text-[#0F172A] py-1 px-2 text-[2.8em] font-outfit font-black tracking-tight whitespace-nowrap relative z-[1] [transform-style:preserve-3d] animate-flip-text max-md:text-[1.6em] max-xs:text-[1.25em]">I'm Havid Rosihandanu</h1>
           
           <!-- Figma Cursor label pointing to the textbox -->
-          <div class="absolute -bottom-10 -right-6 flex items-center gap-1 z-20">
-            <svg class="w-5 h-5 text-[#18A0FB] drop-shadow-sm" fill="currentColor" viewBox="0 0 24 24">
+          <div class="figma-cursor absolute -bottom-10 -right-6 flex items-center gap-1 z-20 max-md:-bottom-8 max-md:right-2 max-xs:-bottom-7 max-xs:right-3 select-none">
+            <svg class="w-5 h-5 text-[#18A0FB] drop-shadow-sm max-md:w-4 max-md:h-4" fill="currentColor" viewBox="0 0 24 24">
               <path d="M4 3l16 9-7 2.5L10 21z" />
             </svg>
-            <div class="bg-[#18A0FB] text-white text-[11px] font-bold px-2 py-0.5 rounded shadow-sm whitespace-nowrap font-outfit">
+            <div class="bg-[#18A0FB] text-white text-[11px] font-bold px-2 py-0.5 rounded shadow-sm whitespace-nowrap font-outfit max-md:text-[9px] max-md:px-1.5 max-md:py-0">
               Havid
             </div>
           </div>
@@ -410,17 +603,70 @@
         <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
           <!-- Stats Column -->
           <div class="md:col-span-5 grid grid-cols-2 gap-4 max-md:order-2">
-            <div class="p-6 bg-slate-50 border border-slate-200/60 rounded-2xl shadow-sm flex flex-col items-center text-center group hover:border-[#18A0FB]/40 hover:bg-slate-100/50 transition-all duration-300">
-              <span class="text-3xl font-outfit font-black text-[#18A0FB] mb-2">4+</span>
+            <!-- Years Experience Card -->
+            <div class="stat-card experience-card p-6 bg-slate-50 border border-slate-200/60 rounded-2xl shadow-sm flex flex-col items-center text-center group transition-all duration-300 relative">
+              <!-- Figma corner selection handles -->
+              <div class="figma-handle -top-[5px] -left-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="figma-handle -top-[5px] -right-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="figma-handle -bottom-[5px] -left-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="figma-handle -bottom-[5px] -right-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+              <!-- Figma Multiplayer Cursor: Purple -->
+              <div class="figma-cursor absolute -top-8 -left-4 pointer-events-none select-none z-30 flex items-center gap-1">
+                <svg class="w-5 h-5 text-[#A259FF] drop-shadow-sm" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M4 3l16 9-7 2.5L10 21z" />
+                </svg>
+                <div class="bg-[#A259FF] text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm whitespace-nowrap font-outfit">
+                  <!-- Developer -->
+                </div>
+              </div>
+
+              <span class="stat-number text-3xl font-outfit font-black text-[#18A0FB] mb-2 transition-all duration-300">4+</span>
               <span class="text-sm text-slate-500 font-medium">Years Experience</span>
             </div>
-            <div class="p-6 bg-slate-50 border border-slate-200/60 rounded-2xl shadow-sm flex flex-col items-center text-center group hover:border-[#18A0FB]/40 hover:bg-slate-100/50 transition-all duration-300">
-              <span class="text-3xl font-outfit font-black text-[#18A0FB] mb-2">5+</span>
+
+            <!-- Projects Done Card -->
+            <div class="stat-card project-done-card p-6 bg-slate-50 border border-slate-200/60 rounded-2xl shadow-sm flex flex-col items-center text-center group transition-all duration-300 relative">
+              <!-- Figma corner selection handles -->
+              <div class="figma-handle -top-[5px] -left-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="figma-handle -top-[5px] -right-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="figma-handle -bottom-[5px] -left-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="figma-handle -bottom-[5px] -right-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+              <!-- Figma Multiplayer Cursor: Orange -->
+              <div class="figma-cursor absolute -top-8 -right-4 pointer-events-none select-none z-30 flex items-center gap-1">
+                <svg class="w-5 h-5 text-[#F24E1E] drop-shadow-sm" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M4 3l16 9-7 2.5L10 21z" />
+                </svg>
+                <div class="bg-[#F24E1E] text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm whitespace-nowrap font-outfit">
+                  <!-- Designer -->
+                </div>
+              </div>
+
+              <span class="stat-number text-3xl font-outfit font-black text-[#18A0FB] mb-2 transition-all duration-300">5+</span>
               <span class="text-sm text-slate-500 font-medium">Projects Done</span>
             </div>
-            <div class="p-6 col-span-2 bg-slate-50 border border-slate-200/60 rounded-2xl shadow-sm flex items-center gap-4 text-left group hover:border-[#18A0FB]/30 hover:bg-slate-100/50 transition-all duration-300">
-              <div class="w-12 h-12 rounded-xl bg-[#E8F4FF] flex items-center justify-center text-[#18A0FB] font-bold shrink-0">
-                <i class="fas fa-graduation-cap text-lg"></i>
+
+            <!-- Study/Campus Card -->
+            <div class="campus-card p-6 col-span-2 bg-slate-50 border border-slate-200/60 rounded-2xl shadow-sm flex items-center gap-4 text-left group transition-all duration-300 relative">
+              <!-- Figma corner selection handles -->
+              <div class="figma-handle -top-[5px] -left-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="figma-handle -top-[5px] -right-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="figma-handle -bottom-[5px] -left-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="figma-handle -bottom-[5px] -right-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+              <!-- Figma Multiplayer Cursor: Yellow -->
+              <div class="figma-cursor absolute -bottom-8 -left-4 pointer-events-none select-none z-30 flex items-center gap-1">
+                <svg class="w-5 h-5 text-[#FF7000] drop-shadow-sm" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M4 3l16 9-7 2.5L10 21z" />
+                </svg>
+                <div class="bg-[#FF7000] text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm whitespace-nowrap font-outfit">
+                  <!-- Researcher -->
+                </div>
+              </div>
+
+              <div class="w-12 h-12 rounded-xl bg-[#E8F4FF] flex items-center justify-center text-[#18A0FB] font-bold shrink-0 transition-all duration-300">
+                <i class="fas fa-graduation-cap text-lg transition-transform duration-300"></i>
               </div>
               <div>
                 <span class="block text-sm font-outfit font-bold text-slate-800">PENS Surabaya</span>
@@ -454,16 +700,26 @@
         </div>
 
         <!-- Figma Selection Box: Design Philosophy (Recreation of 'Problem Statement' in screenshot 1) -->
-        <div class="relative w-full max-w-[850px] mx-auto p-10 bg-white border-2 border-[#18A0FB] shadow-[0_15px_40px_rgba(24,160,251,0.06)] text-center mt-20 max-md:p-6">
+        <div class="philosophy-card group relative w-full max-w-[850px] mx-auto p-10 bg-white border-2 border-[#18A0FB] shadow-[0_15px_40px_rgba(24,160,251,0.06)] text-center mt-20 max-md:p-6">
           <!-- Figma corner handles -->
           <div class="figma-handle -top-[5px] -left-[5px]"></div>
           <div class="figma-handle -top-[5px] -right-[5px]"></div>
           <div class="figma-handle -bottom-[5px] -left-[5px]"></div>
           <div class="figma-handle -bottom-[5px] -right-[5px]"></div>
+
+          <!-- Figma Multiplayer Cursor: Green -->
+          <div class="figma-cursor absolute -bottom-8 -right-4 pointer-events-none select-none z-30 flex items-center gap-1">
+            <svg class="w-5 h-5 text-[#04D27F] drop-shadow-sm" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M4 3l16 9-7 2.5L10 21z" />
+            </svg>
+            <div class="bg-[#04D27F] text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm whitespace-nowrap font-outfit">
+              Client
+            </div>
+          </div>
           
           <span class="inline-block px-3 py-1 bg-slate-100 border border-slate-200 rounded-full text-xs font-semibold text-slate-500 mb-6 font-outfit uppercase tracking-widest">Core Philosophy</span>
           
-          <h3 class="text-3xl font-outfit font-extrabold text-[#0F172A] mb-4">My Philosophy</h3>
+          <h3 class="text-3xl font-outfit font-extrabold text-[#0F172A] mb-4 transition-colors duration-300">My Philosophy</h3>
           <p class="font-sans text-slate-600 text-[1.1rem] leading-relaxed max-w-[700px] mx-auto">
             "Technology is only valuable when it solves real problems. I believe in building software that is not just functional, but deeply aligned with user needs and business goals — where every line of code serves a purpose and drives meaningful digital innovation."
           </p>
@@ -554,18 +810,6 @@
               <div class="figma-handle -bottom-[5px] -left-[5px]"></div>
               <div class="figma-handle -bottom-[5px] -right-[5px]"></div>
 
-              <!-- Figma Component Tag -->
-              <div class="absolute -top-[11px] left-4 bg-[#18A0FB] text-white text-[9px] font-outfit font-black px-2 py-0.5 rounded-sm shadow-sm select-none z-10 flex items-center gap-1 uppercase tracking-wider">
-                <svg class="w-2.5 h-2.5 fill-current" viewBox="0 0 16 16">
-                  <path d="M8 1.5L1.5 8L8 14.5L14.5 8L8 1.5Z" />
-                </svg>
-                Component: Project 01
-              </div>
-
-              <!-- Figma Size Badge -->
-              <div class="absolute -bottom-[11px] right-4 bg-[#18A0FB] text-white text-[8px] font-mono px-1.5 py-0.5 rounded-sm shadow-sm z-10">
-                W: 512px H: 480px
-              </div>
 
               <!-- Browser Mockup Wrapper -->
               <div class="bg-[#F8FAFC] p-4 pb-0 border-b border-slate-100 flex-shrink-0">
@@ -616,18 +860,6 @@
               <div class="figma-handle -bottom-[5px] -left-[5px]"></div>
               <div class="figma-handle -bottom-[5px] -right-[5px]"></div>
 
-              <!-- Figma Component Tag -->
-              <div class="absolute -top-[11px] left-4 bg-[#18A0FB] text-white text-[9px] font-outfit font-black px-2 py-0.5 rounded-sm shadow-sm select-none z-10 flex items-center gap-1 uppercase tracking-wider">
-                <svg class="w-2.5 h-2.5 fill-current" viewBox="0 0 16 16">
-                  <path d="M8 1.5L1.5 8L8 14.5L14.5 8L8 1.5Z" />
-                </svg>
-                Component: Project 02
-              </div>
-
-              <!-- Figma Size Badge -->
-              <div class="absolute -bottom-[11px] right-4 bg-[#18A0FB] text-white text-[8px] font-mono px-1.5 py-0.5 rounded-sm shadow-sm z-10">
-                W: 512px H: 480px
-              </div>
 
               <!-- Browser Mockup Wrapper -->
               <div class="bg-[#F8FAFC] p-4 pb-0 border-b border-slate-100 flex-shrink-0">
@@ -671,7 +903,7 @@
 
           <!-- Slide 2 -->
           <div class="carousel-slide min-w-full flex justify-around px-5 box-border gap-[30px] max-md:flex-col max-md:items-stretch max-md:gap-[20px] max-md:p-0 max-md:w-full">
-            <!-- Project 3 -->
+            <!-- Project 3 (formerly Project 4) -->
             <div class="card relative bg-white border-[1.5px] border-[#18A0FB] rounded-none shadow-[0_10px_25px_rgba(24,160,251,0.06)] hover:shadow-[0_20px_45px_rgba(24,160,251,0.12)] hover:-translate-y-1.5 transition-all duration-300 w-[46%] min-h-[480px] flex flex-col max-md:w-full max-md:max-w-full max-md:mx-auto max-md:mb-[20px] max-md:min-h-auto max-xs:mb-4">
               <!-- Figma corner selection handles -->
               <div class="figma-handle -top-[5px] -left-[5px]"></div>
@@ -679,78 +911,6 @@
               <div class="figma-handle -bottom-[5px] -left-[5px]"></div>
               <div class="figma-handle -bottom-[5px] -right-[5px]"></div>
 
-              <!-- Figma Component Tag -->
-              <div class="absolute -top-[11px] left-4 bg-[#18A0FB] text-white text-[9px] font-outfit font-black px-2 py-0.5 rounded-sm shadow-sm select-none z-10 flex items-center gap-1 uppercase tracking-wider">
-                <svg class="w-2.5 h-2.5 fill-current" viewBox="0 0 16 16">
-                  <path d="M8 1.5L1.5 8L8 14.5L14.5 8L8 1.5Z" />
-                </svg>
-                Component: Project 03
-              </div>
-
-              <!-- Figma Size Badge -->
-              <div class="absolute -bottom-[11px] right-4 bg-[#18A0FB] text-white text-[8px] font-mono px-1.5 py-0.5 rounded-sm shadow-sm z-10">
-                W: 512px H: 480px
-              </div>
-
-              <!-- Browser Mockup Wrapper -->
-              <div class="bg-[#F8FAFC] p-4 pb-0 border-b border-slate-100 flex-shrink-0">
-                <div class="bg-white rounded-t-lg shadow-[0_8px_20px_rgba(0,0,0,0.02)] border-t border-x border-slate-200/80 overflow-hidden flex flex-col">
-                  <!-- Browser Header -->
-                  <div class="flex items-center justify-between bg-slate-50 px-3 py-2 border-b border-slate-200/50">
-                    <div class="flex items-center gap-1.5 select-none">
-                      <span class="w-2 h-2 rounded-full bg-[#FF5F56]"></span>
-                      <span class="w-2 h-2 rounded-full bg-[#FFBD2E]"></span>
-                      <span class="w-2 h-2 rounded-full bg-[#27C93F]"></span>
-                    </div>
-                    <div class="bg-white text-[8px] text-slate-400 font-mono px-5 py-0.5 rounded border border-slate-200/40 w-1/2 text-center select-none truncate">
-                      silog-management.com
-                    </div>
-                    <div class="w-6"></div>
-                  </div>
-                  <!-- Image Viewport -->
-                  <div class="card-image-slider relative h-[190px] overflow-hidden max-xs:h-[130px]">
-                    <div class="card-images flex h-full relative">
-                      <img src="assets/img/silog.png" alt="Project 3 Image 1" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
-                      <img src="assets/img/silog (2).png" alt="Project 3 Image 2" style="display: none" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
-                    </div>
-                    <div class="image-dots absolute bottom-[12px] left-0 right-0 flex justify-center gap-2">
-                      <span class="dot active" data-index="0"></span>
-                      <span class="dot" data-index="1"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Card Body Content -->
-              <div class="card-content p-8 flex-grow flex flex-col text-left max-md:p-6 max-xs:p-5 bg-white">
-                <span class="inline-block px-2.5 py-0.5 bg-[#18A0FB]/10 border border-[#18A0FB]/20 rounded-sm text-[10px] font-extrabold text-[#18A0FB] mb-3 w-fit uppercase tracking-wider font-outfit">Management</span>
-                <h3 class="text-2xl font-outfit font-black text-[#18A0FB] mb-3 hover:opacity-80 transition-opacity duration-200">Silog</h3>
-                <p class="text-slate-500 font-sans text-[0.95rem] leading-relaxed mb-6 flex-grow font-semibold">
-                  Silog is a website used to manage and monitor logistics processes efficiently.
-                </p>
-              </div>
-            </div>
-
-            <!-- Project 4 -->
-            <div class="card relative bg-white border-[1.5px] border-[#18A0FB] rounded-none shadow-[0_10px_25px_rgba(24,160,251,0.06)] hover:shadow-[0_20px_45px_rgba(24,160,251,0.12)] hover:-translate-y-1.5 transition-all duration-300 w-[46%] min-h-[480px] flex flex-col max-md:w-full max-md:max-w-full max-md:mx-auto max-md:mb-[20px] max-md:min-h-auto max-xs:mb-4">
-              <!-- Figma corner selection handles -->
-              <div class="figma-handle -top-[5px] -left-[5px]"></div>
-              <div class="figma-handle -top-[5px] -right-[5px]"></div>
-              <div class="figma-handle -bottom-[5px] -left-[5px]"></div>
-              <div class="figma-handle -bottom-[5px] -right-[5px]"></div>
-
-              <!-- Figma Component Tag -->
-              <div class="absolute -top-[11px] left-4 bg-[#18A0FB] text-white text-[9px] font-outfit font-black px-2 py-0.5 rounded-sm shadow-sm select-none z-10 flex items-center gap-1 uppercase tracking-wider">
-                <svg class="w-2.5 h-2.5 fill-current" viewBox="0 0 16 16">
-                  <path d="M8 1.5L1.5 8L8 14.5L14.5 8L8 1.5Z" />
-                </svg>
-                Component: Project 04
-              </div>
-
-              <!-- Figma Size Badge -->
-              <div class="absolute -bottom-[11px] right-4 bg-[#18A0FB] text-white text-[8px] font-mono px-1.5 py-0.5 rounded-sm shadow-sm z-10">
-                W: 512px H: 480px
-              </div>
 
               <!-- Browser Mockup Wrapper -->
               <div class="bg-[#F8FAFC] p-4 pb-0 border-b border-slate-100 flex-shrink-0">
@@ -770,8 +930,8 @@
                   <!-- Image Viewport -->
                   <div class="card-image-slider relative h-[190px] overflow-hidden max-xs:h-[130px]">
                     <div class="card-images flex h-full relative">
-                      <img src="assets/projects/app-pegawai.png" alt="Project 4 Image 1" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
-                      <img src="assets/projects/app-pegawai(2).png" alt="Project 4 Image 2" style="display: none" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
+                      <img src="assets/projects/app-pegawai.png" alt="Project 3 Image 1" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
+                      <img src="assets/projects/app-pegawai(2).png" alt="Project 3 Image 2" style="display: none" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
                     </div>
                     <div class="image-dots absolute bottom-[12px] left-0 right-0 flex justify-center gap-2">
                       <span class="dot active" data-index="0"></span>
@@ -790,11 +950,8 @@
                 </p>
               </div>
             </div>
-          </div>
 
-          <!-- Slide 3 -->
-          <div class="carousel-slide min-w-full flex justify-around px-5 box-border gap-[30px] max-md:flex-col max-md:items-stretch max-md:gap-[20px] max-md:p-0 max-md:w-full">
-            <!-- Project 5 -->
+            <!-- Project 4 (formerly Project 5) -->
             <div class="card relative bg-white border-[1.5px] border-[#18A0FB] rounded-none shadow-[0_10px_25px_rgba(24,160,251,0.06)] hover:shadow-[0_20px_45px_rgba(24,160,251,0.12)] hover:-translate-y-1.5 transition-all duration-300 w-[46%] min-h-[480px] flex flex-col max-md:w-full max-md:max-w-full max-md:mx-auto max-md:mb-[20px] max-md:min-h-auto max-xs:mb-4">
               <!-- Figma corner selection handles -->
               <div class="figma-handle -top-[5px] -left-[5px]"></div>
@@ -802,18 +959,6 @@
               <div class="figma-handle -bottom-[5px] -left-[5px]"></div>
               <div class="figma-handle -bottom-[5px] -right-[5px]"></div>
 
-              <!-- Figma Component Tag -->
-              <div class="absolute -top-[11px] left-4 bg-[#18A0FB] text-white text-[9px] font-outfit font-black px-2 py-0.5 rounded-sm shadow-sm select-none z-10 flex items-center gap-1 uppercase tracking-wider">
-                <svg class="w-2.5 h-2.5 fill-current" viewBox="0 0 16 16">
-                  <path d="M8 1.5L1.5 8L8 14.5L14.5 8L8 1.5Z" />
-                </svg>
-                Component: Project 05
-              </div>
-
-              <!-- Figma Size Badge -->
-              <div class="absolute -bottom-[11px] right-4 bg-[#18A0FB] text-white text-[8px] font-mono px-1.5 py-0.5 rounded-sm shadow-sm z-10">
-                W: 512px H: 480px
-              </div>
 
               <!-- Browser Mockup Wrapper -->
               <div class="bg-[#F8FAFC] p-4 pb-0 border-b border-slate-100 flex-shrink-0">
@@ -833,8 +978,8 @@
                   <!-- Image Viewport -->
                   <div class="card-image-slider relative h-[190px] overflow-hidden max-xs:h-[130px]">
                     <div class="card-images flex h-full relative">
-                      <img src="assets/img/sigma.png" alt="Project 5 Image 1" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
-                      <img src="assets/img/sigma (2).png" alt="Project 5 Image 2" style="display: none" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
+                      <img src="assets/img/sigma.png" alt="Project 4 Image 1" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
+                      <img src="assets/img/sigma (2).png" alt="Project 4 Image 2" style="display: none" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
                     </div>
                     <div class="image-dots absolute bottom-[12px] left-0 right-0 flex justify-center gap-2">
                       <span class="dot active" data-index="0"></span>
@@ -853,66 +998,6 @@
                 </p>
               </div>
             </div>
-
-            <!-- Project 6 -->
-            <div class="card relative bg-white border-[1.5px] border-[#18A0FB] rounded-none shadow-[0_10px_25px_rgba(24,160,251,0.06)] hover:shadow-[0_20px_45px_rgba(24,160,251,0.12)] hover:-translate-y-1.5 transition-all duration-300 w-[46%] min-h-[480px] flex flex-col max-md:w-full max-md:max-w-full max-md:mx-auto max-md:mb-[20px] max-md:min-h-auto max-xs:mb-4">
-              <!-- Figma corner selection handles -->
-              <div class="figma-handle -top-[5px] -left-[5px]"></div>
-              <div class="figma-handle -top-[5px] -right-[5px]"></div>
-              <div class="figma-handle -bottom-[5px] -left-[5px]"></div>
-              <div class="figma-handle -bottom-[5px] -right-[5px]"></div>
-
-              <!-- Figma Component Tag -->
-              <div class="absolute -top-[11px] left-4 bg-[#18A0FB] text-white text-[9px] font-outfit font-black px-2 py-0.5 rounded-sm shadow-sm select-none z-10 flex items-center gap-1 uppercase tracking-wider">
-                <svg class="w-2.5 h-2.5 fill-current" viewBox="0 0 16 16">
-                  <path d="M8 1.5L1.5 8L8 14.5L14.5 8L8 1.5Z" />
-                </svg>
-                Component: Project 06
-              </div>
-
-              <!-- Figma Size Badge -->
-              <div class="absolute -bottom-[11px] right-4 bg-[#18A0FB] text-white text-[8px] font-mono px-1.5 py-0.5 rounded-sm shadow-sm z-10">
-                W: 512px H: 480px
-              </div>
-
-              <!-- Browser Mockup Wrapper -->
-              <div class="bg-[#F8FAFC] p-4 pb-0 border-b border-slate-100 flex-shrink-0">
-                <div class="bg-white rounded-t-lg shadow-[0_8px_20px_rgba(0,0,0,0.02)] border-t border-x border-slate-200/80 overflow-hidden flex flex-col">
-                  <!-- Browser Header -->
-                  <div class="flex items-center justify-between bg-slate-50 px-3 py-2 border-b border-slate-200/50">
-                    <div class="flex items-center gap-1.5 select-none">
-                      <span class="w-2 h-2 rounded-full bg-[#FF5F56]"></span>
-                      <span class="w-2 h-2 rounded-full bg-[#FFBD2E]"></span>
-                      <span class="w-2 h-2 rounded-full bg-[#27C93F]"></span>
-                    </div>
-                    <div class="bg-white text-[8px] text-slate-400 font-mono px-5 py-0.5 rounded border border-slate-200/40 w-1/2 text-center select-none truncate">
-                      havid-portfolio.local
-                    </div>
-                    <div class="w-6"></div>
-                  </div>
-                  <!-- Image Viewport -->
-                  <div class="card-image-slider relative h-[190px] overflow-hidden max-xs:h-[130px]">
-                    <div class="card-images flex h-full relative">
-                      <img src="assets/img/porto.png" alt="Project 6 Image 1" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
-                      <img src="assets/img/porto (2).png" alt="Project 6 Image 2" style="display: none" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
-                    </div>
-                    <div class="image-dots absolute bottom-[12px] left-0 right-0 flex justify-center gap-2">
-                      <span class="dot active" data-index="0"></span>
-                      <span class="dot" data-index="1"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Card Body Content -->
-              <div class="card-content p-8 flex-grow flex flex-col text-left max-md:p-6 max-xs:p-5 bg-white">
-                <span class="inline-block px-2.5 py-0.5 bg-[#18A0FB]/10 border border-[#18A0FB]/20 rounded-sm text-[10px] font-extrabold text-[#18A0FB] mb-3 w-fit uppercase tracking-wider font-outfit">Portfolio</span>
-                <h3 class="text-2xl font-outfit font-black text-[#18A0FB] mb-3 hover:opacity-80 transition-opacity duration-200">Portofolio</h3>
-                <p class="text-slate-500 font-sans text-[0.95rem] leading-relaxed mb-6 flex-grow font-semibold">
-                  Portofolio is a website created to showcase various projects that have been completed.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -924,7 +1009,6 @@
       <div class="carousel-dots flex justify-center gap-2.5 mt-10">
         <span class="carousel-dot active" data-slide="0"></span>
         <span class="carousel-dot" data-slide="1"></span>
-        <span class="carousel-dot" data-slide="2"></span>
       </div>
     </section>
 
@@ -1006,6 +1090,30 @@
                 </a>
               </div>
             </div>
+            <div class="certificate-card group flex-shrink-0 w-[420px] h-[260px] bg-slate-800 rounded-2xl border border-white/5 shadow-xl flex justify-center items-center text-white transition-all duration-500 overflow-hidden bg-cover bg-center bg-no-repeat relative max-md:w-[280px] max-md:h-[175px]" style="background-image: url('./assets/certificate/certificate_td.png');">
+              <div class="certificate-overlay absolute inset-0 bg-slate-950/75 backdrop-blur-[3px] flex flex-col justify-center items-center opacity-0 transition-all duration-300 p-6 text-center group-hover:opacity-100 max-md:opacity-100 max-md:bg-slate-950/60">
+                <h3 class="text-white font-outfit font-black text-lg md:text-xl mb-3 tracking-tight">LKMM-TD PENS</h3>
+                <a href="./assets/certificate/certificate_td.pdf" target="_blank" class="view-pdf-btn inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-outfit font-bold py-2.5 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-indigo-600/30 text-sm max-md:py-2 max-md:px-4">
+                  <i class="far fa-file-pdf"></i> View PDF
+                </a>
+              </div>
+            </div>
+            <div class="certificate-card group flex-shrink-0 w-[420px] h-[260px] bg-slate-800 rounded-2xl border border-white/5 shadow-xl flex justify-center items-center text-white transition-all duration-500 overflow-hidden bg-cover bg-center bg-no-repeat relative max-md:w-[280px] max-md:h-[175px]" style="background-image: url('./assets/certificate/certificate_tm.png');">
+              <div class="certificate-overlay absolute inset-0 bg-slate-950/75 backdrop-blur-[3px] flex flex-col justify-center items-center opacity-0 transition-all duration-300 p-6 text-center group-hover:opacity-100 max-md:opacity-100 max-md:bg-slate-950/60">
+                <h3 class="text-white font-outfit font-black text-lg md:text-xl mb-3 tracking-tight">LKMM-TM FMIPA Unesa</h3>
+                <a href="./assets/certificate/certificat_tm.pdf" target="_blank" class="view-pdf-btn inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-outfit font-bold py-2.5 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-indigo-600/30 text-sm max-md:py-2 max-md:px-4">
+                  <i class="far fa-file-pdf"></i> View PDF
+                </a>
+              </div>
+            </div>
+            <div class="certificate-card group flex-shrink-0 w-[420px] h-[260px] bg-slate-800 rounded-2xl border border-white/5 shadow-xl flex justify-center items-center text-white transition-all duration-500 overflow-hidden bg-cover bg-center bg-no-repeat relative max-md:w-[280px] max-md:h-[175px]" style="background-image: url('./assets/certificate/certificate_ttgd.png');">
+              <div class="certificate-overlay absolute inset-0 bg-slate-950/75 backdrop-blur-[3px] flex flex-col justify-center items-center opacity-0 transition-all duration-300 p-6 text-center group-hover:opacity-100 max-md:opacity-100 max-md:bg-slate-950/60">
+                <h3 class="text-white font-outfit font-black text-lg md:text-xl mb-3 tracking-tight">Volunteer TTGD</h3>
+                <a href="./assets/certificate/certificate_ttgd.pdf" target="_blank" class="view-pdf-btn inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-outfit font-bold py-2.5 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-indigo-600/30 text-sm max-md:py-2 max-md:px-4">
+                  <i class="far fa-file-pdf"></i> View PDF
+                </a>
+              </div>
+            </div>
           </div>
           <div class="flex gap-8 shrink-0" aria-hidden="true">
             <div class="certificate-card group flex-shrink-0 w-[420px] h-[260px] bg-slate-800 rounded-2xl border border-white/5 shadow-xl flex justify-center items-center text-white transition-all duration-500 overflow-hidden bg-cover bg-center bg-no-repeat relative max-md:w-[280px] max-md:h-[175px]" style="background-image: url('./assets/certificate/certificate_dicoding_js.jpg');">
@@ -1076,6 +1184,30 @@
               <div class="certificate-overlay absolute inset-0 bg-slate-950/75 backdrop-blur-[3px] flex flex-col justify-center items-center opacity-0 transition-all duration-300 p-6 text-center group-hover:opacity-100 max-md:opacity-100 max-md:bg-slate-950/60">
                 <h3 class="text-white font-outfit font-black text-lg md:text-xl mb-3 tracking-tight">Generative AI</h3>
                 <a href="./assets/certificate/certificate_ai_generatif.pdf" target="_blank" class="view-pdf-btn inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-outfit font-bold py-2.5 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-indigo-600/30 text-sm max-md:py-2 max-md:px-4">
+                  <i class="far fa-file-pdf"></i> View PDF
+                </a>
+              </div>
+            </div>
+            <div class="certificate-card group flex-shrink-0 w-[420px] h-[260px] bg-slate-800 rounded-2xl border border-white/5 shadow-xl flex justify-center items-center text-white transition-all duration-500 overflow-hidden bg-cover bg-center bg-no-repeat relative max-md:w-[280px] max-md:h-[175px]" style="background-image: url('./assets/certificate/certificate_td.png');">
+              <div class="certificate-overlay absolute inset-0 bg-slate-950/75 backdrop-blur-[3px] flex flex-col justify-center items-center opacity-0 transition-all duration-300 p-6 text-center group-hover:opacity-100 max-md:opacity-100 max-md:bg-slate-950/60">
+                <h3 class="text-white font-outfit font-black text-lg md:text-xl mb-3 tracking-tight">LKMM-TD PENS</h3>
+                <a href="./assets/certificate/certificate_td.pdf" target="_blank" class="view-pdf-btn inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-outfit font-bold py-2.5 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-indigo-600/30 text-sm max-md:py-2 max-md:px-4">
+                  <i class="far fa-file-pdf"></i> View PDF
+                </a>
+              </div>
+            </div>
+            <div class="certificate-card group flex-shrink-0 w-[420px] h-[260px] bg-slate-800 rounded-2xl border border-white/5 shadow-xl flex justify-center items-center text-white transition-all duration-500 overflow-hidden bg-cover bg-center bg-no-repeat relative max-md:w-[280px] max-md:h-[175px]" style="background-image: url('./assets/certificate/certificate_tm.png');">
+              <div class="certificate-overlay absolute inset-0 bg-slate-950/75 backdrop-blur-[3px] flex flex-col justify-center items-center opacity-0 transition-all duration-300 p-6 text-center group-hover:opacity-100 max-md:opacity-100 max-md:bg-slate-950/60">
+                <h3 class="text-white font-outfit font-black text-lg md:text-xl mb-3 tracking-tight">LKMM-TM FMIPA Unesa</h3>
+                <a href="./assets/certificate/certificat_tm.pdf" target="_blank" class="view-pdf-btn inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-outfit font-bold py-2.5 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-indigo-600/30 text-sm max-md:py-2 max-md:px-4">
+                  <i class="far fa-file-pdf"></i> View PDF
+                </a>
+              </div>
+            </div>
+            <div class="certificate-card group flex-shrink-0 w-[420px] h-[260px] bg-slate-800 rounded-2xl border border-white/5 shadow-xl flex justify-center items-center text-white transition-all duration-500 overflow-hidden bg-cover bg-center bg-no-repeat relative max-md:w-[280px] max-md:h-[175px]" style="background-image: url('./assets/certificate/certificate_ttgd.png');">
+              <div class="certificate-overlay absolute inset-0 bg-slate-950/75 backdrop-blur-[3px] flex flex-col justify-center items-center opacity-0 transition-all duration-300 p-6 text-center group-hover:opacity-100 max-md:opacity-100 max-md:bg-slate-950/60">
+                <h3 class="text-white font-outfit font-black text-lg md:text-xl mb-3 tracking-tight">Volunteer TTGD</h3>
+                <a href="./assets/certificate/certificate_ttgd.pdf" target="_blank" class="view-pdf-btn inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-outfit font-bold py-2.5 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-indigo-600/30 text-sm max-md:py-2 max-md:px-4">
                   <i class="far fa-file-pdf"></i> View PDF
                 </a>
               </div>
@@ -1126,6 +1258,22 @@
                 </a>
               </div>
             </div>
+            <div class="certificate-card group flex-shrink-0 w-[420px] h-[260px] bg-slate-800 rounded-2xl border border-white/5 shadow-xl flex justify-center items-center text-white transition-all duration-500 overflow-hidden bg-cover bg-center bg-no-repeat relative max-md:w-[280px] max-md:h-[175px]" style="background-image: url('./assets/certificate/certificate_td.png');">
+              <div class="certificate-overlay absolute inset-0 bg-slate-950/75 backdrop-blur-[3px] flex flex-col justify-center items-center opacity-0 transition-all duration-300 p-6 text-center group-hover:opacity-100 max-md:opacity-100 max-md:bg-slate-950/60">
+                <h3 class="text-white font-outfit font-black text-lg md:text-xl mb-3 tracking-tight">LKMM-TD PENS</h3>
+                <a href="./assets/certificate/certificate_td.pdf" target="_blank" class="view-pdf-btn inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-outfit font-bold py-2.5 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-indigo-600/30 text-sm max-md:py-2 max-md:px-4">
+                  <i class="far fa-file-pdf"></i> View PDF
+                </a>
+              </div>
+            </div>
+            <div class="certificate-card group flex-shrink-0 w-[420px] h-[260px] bg-slate-800 rounded-2xl border border-white/5 shadow-xl flex justify-center items-center text-white transition-all duration-500 overflow-hidden bg-cover bg-center bg-no-repeat relative max-md:w-[280px] max-md:h-[175px]" style="background-image: url('./assets/certificate/certificate_tm.png');">
+              <div class="certificate-overlay absolute inset-0 bg-slate-950/75 backdrop-blur-[3px] flex flex-col justify-center items-center opacity-0 transition-all duration-300 p-6 text-center group-hover:opacity-100 max-md:opacity-100 max-md:bg-slate-950/60">
+                <h3 class="text-white font-outfit font-black text-lg md:text-xl mb-3 tracking-tight">LKMM-TM FMIPA Unesa</h3>
+                <a href="./assets/certificate/certificat_tm.pdf" target="_blank" class="view-pdf-btn inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-outfit font-bold py-2.5 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-indigo-600/30 text-sm max-md:py-2 max-md:px-4">
+                  <i class="far fa-file-pdf"></i> View PDF
+                </a>
+              </div>
+            </div>
           </div>
           <div class="flex gap-8 shrink-0" aria-hidden="true">
             <div class="certificate-card group flex-shrink-0 w-[420px] h-[260px] bg-slate-800 rounded-2xl border border-white/5 shadow-xl flex justify-center items-center text-white transition-all duration-500 overflow-hidden bg-cover bg-center bg-no-repeat relative max-md:w-[280px] max-md:h-[175px]" style="background-image: url('./assets/certificate/certificate_dicoding_js.jpg');">
@@ -1168,6 +1316,22 @@
                 </a>
               </div>
             </div>
+            <div class="certificate-card group flex-shrink-0 w-[420px] h-[260px] bg-slate-800 rounded-2xl border border-white/5 shadow-xl flex justify-center items-center text-white transition-all duration-500 overflow-hidden bg-cover bg-center bg-no-repeat relative max-md:w-[280px] max-md:h-[175px]" style="background-image: url('./assets/certificate/certificate_td.png');">
+              <div class="certificate-overlay absolute inset-0 bg-slate-950/75 backdrop-blur-[3px] flex flex-col justify-center items-center opacity-0 transition-all duration-300 p-6 text-center group-hover:opacity-100 max-md:opacity-100 max-md:bg-slate-950/60">
+                <h3 class="text-white font-outfit font-black text-lg md:text-xl mb-3 tracking-tight">LKMM-TD PENS</h3>
+                <a href="./assets/certificate/certificate_td.pdf" target="_blank" class="view-pdf-btn inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-outfit font-bold py-2.5 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-indigo-600/30 text-sm max-md:py-2 max-md:px-4">
+                  <i class="far fa-file-pdf"></i> View PDF
+                </a>
+              </div>
+            </div>
+            <div class="certificate-card group flex-shrink-0 w-[420px] h-[260px] bg-slate-800 rounded-2xl border border-white/5 shadow-xl flex justify-center items-center text-white transition-all duration-500 overflow-hidden bg-cover bg-center bg-no-repeat relative max-md:w-[280px] max-md:h-[175px]" style="background-image: url('./assets/certificate/certificate_tm.png');">
+              <div class="certificate-overlay absolute inset-0 bg-slate-950/75 backdrop-blur-[3px] flex flex-col justify-center items-center opacity-0 transition-all duration-300 p-6 text-center group-hover:opacity-100 max-md:opacity-100 max-md:bg-slate-950/60">
+                <h3 class="text-white font-outfit font-black text-lg md:text-xl mb-3 tracking-tight">LKMM-TM FMIPA Unesa</h3>
+                <a href="./assets/certificate/certificat_tm.pdf" target="_blank" class="view-pdf-btn inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-outfit font-bold py-2.5 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-indigo-600/30 text-sm max-md:py-2 max-md:px-4">
+                  <i class="far fa-file-pdf"></i> View PDF
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1206,6 +1370,14 @@
                 </a>
               </div>
             </div>
+            <div class="certificate-card group flex-shrink-0 w-[420px] h-[260px] bg-slate-800 rounded-2xl border border-white/5 shadow-xl flex justify-center items-center text-white transition-all duration-500 overflow-hidden bg-cover bg-center bg-no-repeat relative max-md:w-[280px] max-md:h-[175px]" style="background-image: url('./assets/certificate/certificate_ttgd.png');">
+              <div class="certificate-overlay absolute inset-0 bg-slate-950/75 backdrop-blur-[3px] flex flex-col justify-center items-center opacity-0 transition-all duration-300 p-6 text-center group-hover:opacity-100 max-md:opacity-100 max-md:bg-slate-950/60">
+                <h3 class="text-white font-outfit font-black text-lg md:text-xl mb-3 tracking-tight">Volunteer TTGD</h3>
+                <a href="./assets/certificate/certificate_ttgd.pdf" target="_blank" class="view-pdf-btn inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-outfit font-bold py-2.5 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-indigo-600/30 text-sm max-md:py-2 max-md:px-4">
+                  <i class="far fa-file-pdf"></i> View PDF
+                </a>
+              </div>
+            </div>
           </div>
           <div class="flex gap-8 shrink-0" aria-hidden="true">
             <div class="certificate-card group flex-shrink-0 w-[420px] h-[260px] bg-slate-800 rounded-2xl border border-white/5 shadow-xl flex justify-center items-center text-white transition-all duration-500 overflow-hidden bg-cover bg-center bg-no-repeat relative max-md:w-[280px] max-md:h-[175px]" style="background-image: url('./assets/certificate/certificate_dicoding-be.png');">
@@ -1236,6 +1408,14 @@
               <div class="certificate-overlay absolute inset-0 bg-slate-950/75 backdrop-blur-[3px] flex flex-col justify-center items-center opacity-0 transition-all duration-300 p-6 text-center group-hover:opacity-100 max-md:opacity-100 max-md:bg-slate-950/60">
                 <h3 class="text-white font-outfit font-black text-lg md:text-xl mb-3 tracking-tight">Generative AI</h3>
                 <a href="./assets/certificate/certificate_ai_generatif.pdf" target="_blank" class="view-pdf-btn inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-outfit font-bold py-2.5 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-indigo-600/30 text-sm max-md:py-2 max-md:px-4">
+                  <i class="far fa-file-pdf"></i> View PDF
+                </a>
+              </div>
+            </div>
+            <div class="certificate-card group flex-shrink-0 w-[420px] h-[260px] bg-slate-800 rounded-2xl border border-white/5 shadow-xl flex justify-center items-center text-white transition-all duration-500 overflow-hidden bg-cover bg-center bg-no-repeat relative max-md:w-[280px] max-md:h-[175px]" style="background-image: url('./assets/certificate/certificate_ttgd.png');">
+              <div class="certificate-overlay absolute inset-0 bg-slate-950/75 backdrop-blur-[3px] flex flex-col justify-center items-center opacity-0 transition-all duration-300 p-6 text-center group-hover:opacity-100 max-md:opacity-100 max-md:bg-slate-950/60">
+                <h3 class="text-white font-outfit font-black text-lg md:text-xl mb-3 tracking-tight">Volunteer TTGD</h3>
+                <a href="./assets/certificate/certificate_ttgd.pdf" target="_blank" class="view-pdf-btn inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-outfit font-bold py-2.5 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-indigo-600/30 text-sm max-md:py-2 max-md:px-4">
                   <i class="far fa-file-pdf"></i> View PDF
                 </a>
               </div>
@@ -1688,6 +1868,17 @@
             pin.remove();
             popover.remove();
           }
+        });
+      });
+
+      // Spotlight hover card mouse tracker
+      document.querySelectorAll(".experience-card, .project-done-card, .campus-card, .philosophy-card").forEach(card => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          card.style.setProperty('--mouse-x', `${x}%`);
+          card.style.setProperty('--mouse-y', `${y}%`);
         });
       });
     });
