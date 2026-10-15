@@ -229,9 +229,61 @@
       transform: scale(1) translate(0) !important;
     }
     
-    a, button, [role="button"], .dot, .carousel-dot, .toolbar-btn {
-      cursor: pointer;
+    a, button, [role="button"], .dot, .carousel-dot, .carousel-button, .toolbar-btn, .nav-link, .view-pdf-btn, .comment-pin, input[type="submit"], input[type="button"], input[type="checkbox"], input[type="radio"], select, summary, label[for], [onclick] {
+      cursor: url("assets/img/cursor-pointer.svg") 10 2, pointer !important;
     }
+
+    /* Scroll Reveal Entrance Animations */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-on-scroll.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.92) translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-scale.in-view {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-35px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-left.in-view {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(35px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-right.in-view {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .delay-100 { transition-delay: 100ms; }
+    .delay-150 { transition-delay: 150ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-300 { transition-delay: 300ms; }
+    .delay-400 { transition-delay: 400ms; }
+    .delay-500 { transition-delay: 500ms; }
     
     @keyframes rotateCircles {
       from {
@@ -474,7 +526,7 @@
       border: 2px solid white;
       border-radius: 50% 50% 50% 0;
       transform: translate(-50%, -100%) rotate(-45deg);
-      cursor: pointer;
+      cursor: url("assets/img/cursor-pointer.svg") 10 2, pointer !important;
       z-index: 9999;
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
       animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
@@ -598,13 +650,13 @@
       <div class="absolute bottom-1/4 right-[10%] w-96 h-96 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div class="about-container max-w-[1100px] w-full mx-auto relative z-[2]">
-        <h2 class="title-section font-outfit text-4xl md:text-5xl font-black text-center mb-16 text-[#0F172A] relative after:content-[''] after:block after:w-16 after:h-1.5 after:bg-[#18A0FB] after:mt-4 after:mx-auto after:rounded-full">About Me</h2>
+        <h2 class="title-section reveal-on-scroll font-outfit text-4xl md:text-5xl font-black text-center mb-16 text-[#0F172A] relative after:content-[''] after:block after:w-16 after:h-1.5 after:bg-[#18A0FB] after:mt-4 after:mx-auto after:rounded-full">About Me</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
           <!-- Stats Column -->
           <div class="md:col-span-5 grid grid-cols-2 gap-4 max-md:order-2">
             <!-- Years Experience Card -->
-            <div class="stat-card experience-card p-6 bg-slate-50 border border-slate-200/60 rounded-2xl shadow-sm flex flex-col items-center text-center group transition-all duration-300 relative">
+            <div class="stat-card experience-card reveal-scale delay-100 p-6 bg-slate-50 border border-slate-200/60 rounded-2xl shadow-sm flex flex-col items-center text-center group transition-all duration-300 relative">
               <!-- Figma corner selection handles -->
               <div class="figma-handle -top-[5px] -left-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div class="figma-handle -top-[5px] -right-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -626,7 +678,7 @@
             </div>
 
             <!-- Projects Done Card -->
-            <div class="stat-card project-done-card p-6 bg-slate-50 border border-slate-200/60 rounded-2xl shadow-sm flex flex-col items-center text-center group transition-all duration-300 relative">
+            <div class="stat-card project-done-card reveal-scale delay-200 p-6 bg-slate-50 border border-slate-200/60 rounded-2xl shadow-sm flex flex-col items-center text-center group transition-all duration-300 relative">
               <!-- Figma corner selection handles -->
               <div class="figma-handle -top-[5px] -left-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div class="figma-handle -top-[5px] -right-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -648,7 +700,7 @@
             </div>
 
             <!-- Study/Campus Card -->
-            <div class="campus-card p-6 col-span-2 bg-slate-50 border border-slate-200/60 rounded-2xl shadow-sm flex items-center gap-4 text-left group transition-all duration-300 relative">
+            <div class="campus-card reveal-scale delay-300 p-6 col-span-2 bg-slate-50 border border-slate-200/60 rounded-2xl shadow-sm flex items-center gap-4 text-left group transition-all duration-300 relative">
               <!-- Figma corner selection handles -->
               <div class="figma-handle -top-[5px] -left-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div class="figma-handle -top-[5px] -right-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -676,7 +728,7 @@
           </div>
 
           <!-- Description Column -->
-          <div class="md:col-span-7 text-left space-y-6 max-md:order-1 max-md:text-center">
+          <div class="md:col-span-7 text-left space-y-6 max-md:order-1 max-md:text-center reveal-right delay-150">
             <p class="font-sans text-slate-600 text-lg leading-relaxed">
               I'm Havid Rosihandanu, an Information Technology student. I'm passionate about understanding real-world problems and translating them into effective, scalable software solutions that create meaningful impact.
             </p>
@@ -700,7 +752,7 @@
         </div>
 
         <!-- Figma Selection Box: Design Philosophy (Recreation of 'Problem Statement' in screenshot 1) -->
-        <div class="philosophy-card group relative w-full max-w-[850px] mx-auto p-10 bg-white border-2 border-[#18A0FB] shadow-[0_15px_40px_rgba(24,160,251,0.06)] text-center mt-20 max-md:p-6">
+        <div class="philosophy-card group reveal-on-scroll delay-200 relative w-full max-w-[850px] mx-auto p-10 bg-white border-2 border-[#18A0FB] shadow-[0_15px_40px_rgba(24,160,251,0.06)] text-center mt-20 max-md:p-6">
           <!-- Figma corner handles -->
           <div class="figma-handle -top-[5px] -left-[5px]"></div>
           <div class="figma-handle -top-[5px] -right-[5px]"></div>
@@ -792,9 +844,9 @@
 
     <!-- Modernized Projects Section -->
     <section class="project-section py-24 px-5 min-h-screen flex flex-col justify-center items-center w-full bg-[#f8fafc] text-slate-800 text-center max-md:py-16 max-md:px-2.5 max-xs:py-[40px] max-xs:px-2 overflow-hidden" id="project">
-      <h2 class="title-section font-outfit text-4xl md:text-5xl font-black text-center mb-16 relative after:content-[''] after:block after:w-16 after:h-1.5 after:bg-[#18A0FB] after:mt-4 after:mx-auto after:rounded-full">Projects</h2>
+      <h2 class="title-section reveal-on-scroll font-outfit text-4xl md:text-5xl font-black text-center mb-16 relative after:content-[''] after:block after:w-16 after:h-1.5 after:bg-[#18A0FB] after:mt-4 after:mx-auto after:rounded-full">Projects</h2>
 
-      <div class="carousel-container relative max-w-[960px] w-full mx-auto mb-10 overflow-hidden py-4 max-md:px-2.5 max-xs:px-2">
+      <div class="carousel-container reveal-scale delay-150 relative max-w-[960px] w-full mx-auto mb-10 overflow-hidden py-4 max-md:px-2.5 max-xs:px-2">
         <button class="carousel-button prev absolute top-1/2 -translate-y-1/2 w-12 h-12 bg-white/95 border border-slate-200/80 rounded-full flex items-center justify-center text-slate-600 shadow-md cursor-pointer z-10 transition-all duration-300 hover:bg-[#18A0FB] hover:text-white hover:border-[#18A0FB] hover:scale-105 active:scale-95 left-1 sm:left-3" aria-label="Previous slide">
           &#10094;
         </button>
@@ -1098,7 +1150,7 @@
         </button>
       </div>
 
-      <div class="carousel-dots flex justify-center gap-2.5 mt-10">
+      <div class="carousel-dots reveal-on-scroll delay-200 flex justify-center gap-2.5 mt-10">
         <span class="carousel-dot active" data-slide="0"></span>
         <span class="carousel-dot" data-slide="1"></span>
         <span class="carousel-dot" data-slide="2"></span>
@@ -1110,8 +1162,8 @@
 
     <!-- Modernized Certificates Section -->
     <section class="certificate-section py-24 px-5 min-h-screen flex flex-col justify-center items-center w-full bg-gradient-to-br from-[#081a2e] via-slate-900 to-[#0b2440] text-slate-100 overflow-hidden" id="certificate">
-      <h2 class="title-section font-outfit text-4xl md:text-5xl font-black text-center mb-16 relative after:content-[''] after:block after:w-16 after:h-1.5 after:bg-[#18A0FB] after:mt-4 after:mx-auto after:rounded-full">Certificates</h2>
-      <div class="marquee-container w-full overflow-hidden relative  max-md:hidden">
+      <h2 class="title-section reveal-on-scroll font-outfit text-4xl md:text-5xl font-black text-center mb-16 relative after:content-[''] after:block after:w-16 after:h-1.5 after:bg-[#18A0FB] after:mt-4 after:mx-auto after:rounded-full">Certificates</h2>
+      <div class="marquee-container reveal-scale delay-150 w-full overflow-hidden relative  max-md:hidden">
         <div class="marquee-track flex gap-8 py-2 w-max animate-marquee-left hover:[animation-play-state:paused] [will-change:transform]">
           <div class="flex gap-8 shrink-0">
             <div class="certificate-card group flex-shrink-0 w-[420px] h-[260px] bg-slate-800 rounded-2xl border border-white/5 shadow-xl flex justify-center items-center text-white transition-all duration-500 overflow-hidden bg-cover bg-center bg-no-repeat relative max-md:w-[280px] max-md:h-[175px]" style="background-image: url('./assets/certificate/certificate_dicoding_js.jpg');">
@@ -1523,11 +1575,11 @@
 
     <!-- Modernized Contact Section -->
     <section class="contact-section py-24 px-5 flex flex-col justify-center items-center w-full bg-slate-50 text-slate-800 text-center min-h-[50vh]" id="contact">
-      <h2 class="title-section font-outfit text-4xl md:text-5xl font-black text-center mb-16 relative after:content-[''] after:block after:w-16 after:h-1.5 after:bg-[#18A0FB] after:mt-4 after:mx-auto after:rounded-full">Contact Me</h2>
+      <h2 class="title-section reveal-on-scroll font-outfit text-4xl md:text-5xl font-black text-center mb-16 relative after:content-[''] after:block after:w-16 after:h-1.5 after:bg-[#18A0FB] after:mt-4 after:mx-auto after:rounded-full">Contact Me</h2>
       
       <div class="contact-info max-w-[1000px] mx-auto px-5 grid grid-cols-1 sm:grid-cols-3 gap-6 w-full">
         <!-- Phone Card -->
-        <div class="bg-white border border-slate-100 shadow-sm hover:shadow-xl rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-[#18A0FB]/20 group">
+        <div class="bg-white border border-slate-100 shadow-sm hover:shadow-xl rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-[#18A0FB]/20 group reveal-scale delay-100">
           <div class="w-14 h-14 bg-[#18A0FB]/5 border border-[#18A0FB]/10 rounded-2xl flex items-center justify-center text-[#18A0FB] text-xl mb-4 group-hover:bg-[#18A0FB] group-hover:text-white transition-all duration-300">
             <i class="fas fa-phone-alt"></i>
           </div>
@@ -1536,7 +1588,7 @@
         </div>
         
         <!-- Email Card -->
-        <div class="bg-white border border-slate-100 shadow-sm hover:shadow-xl rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-[#18A0FB]/20 group">
+        <div class="bg-white border border-slate-100 shadow-sm hover:shadow-xl rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-[#18A0FB]/20 group reveal-scale delay-200">
           <div class="w-14 h-14 bg-[#18A0FB]/5 border border-[#18A0FB]/10 rounded-2xl flex items-center justify-center text-[#18A0FB] text-xl mb-4 group-hover:bg-[#18A0FB] group-hover:text-white transition-all duration-300">
             <i class="fas fa-envelope"></i>
           </div>
@@ -1545,7 +1597,7 @@
         </div>
         
         <!-- Location Card -->
-        <div class="bg-white border border-slate-100 shadow-sm hover:shadow-xl rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-[#18A0FB]/20 group">
+        <div class="bg-white border border-slate-100 shadow-sm hover:shadow-xl rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-[#18A0FB]/20 group reveal-scale delay-300">
           <div class="w-14 h-14 bg-[#18A0FB]/5 border border-[#18A0FB]/10 rounded-2xl flex items-center justify-center text-[#18A0FB] text-xl mb-4 group-hover:bg-[#18A0FB] group-hover:text-white transition-all duration-300">
             <i class="fas fa-map-marker-alt"></i>
           </div>
@@ -1557,7 +1609,7 @@
   </main>
 
   <footer class="footer bg-[#F8FAFC] border-t border-slate-200 py-16 px-8 relative overflow-hidden">
-    <div class="max-w-[1200px] mx-auto flex flex-col gap-10">
+    <div class="max-w-[1200px] mx-auto flex flex-col gap-10 reveal-on-scroll">
       
       <!-- Top Row -->
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 pb-8 border-b border-slate-200/60">
@@ -2064,8 +2116,205 @@
           card.style.setProperty('--mouse-y', `${y}%`);
         });
       });
+
+      // Scroll Reveal Entrance Observer
+      const revealElements = document.querySelectorAll(".reveal-on-scroll, .reveal-scale, .reveal-left, .reveal-right");
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in-view");
+              obs.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.12,
+          rootMargin: "0px 0px -40px 0px"
+        });
+
+        revealElements.forEach((el) => observer.observe(el));
+      } else {
+        revealElements.forEach((el) => el.classList.add("in-view"));
+      }
+
+      // Smoke Cursor Trail Effect
+      (function initSmokeTrail() {
+        const canvas = document.getElementById("smoke-trail-canvas");
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+
+        let width = 0;
+        let height = 0;
+        function resizeCanvas() {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
+
+        const particles = [];
+        const MAX_PARTICLES = 90;
+        let lastX = null;
+        let lastY = null;
+        let isLoopRunning = false;
+
+        // Smoke color palette: ethereal blend of brand Figma-blue, soft purple, sky cyan, and vapor mist
+        const colors = [
+          { r: 24, g: 160, b: 251 },  // Figma Blue
+          { r: 162, g: 89, b: 255 },  // Purple Accent
+          { r: 56, g: 189, b: 248 },  // Sky Cyan
+          { r: 148, g: 163, b: 184 }, // Slate Mist
+          { r: 99, g: 102, b: 241 }   // Indigo Fog
+        ];
+
+        function createParticle(x, y, dx = 0, dy = 0) {
+          if (particles.length >= MAX_PARTICLES) {
+            particles.shift();
+          }
+
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const initialRadius = 7 + Math.random() * 8;
+          const maxRadius = 30 + Math.random() * 25;
+          const life = 1.0;
+          const decay = 0.014 + Math.random() * 0.012; // lasts ~40-70 frames (~0.7s - 1.2s)
+          const baseAlpha = 0.30 + Math.random() * 0.15;
+
+          particles.push({
+            x: x + (Math.random() - 0.5) * 8,
+            y: y + (Math.random() - 0.5) * 8,
+            vx: (Math.random() - 0.5) * 0.7 + (dx * 0.05),
+            vy: -0.4 - Math.random() * 0.8 + (dy * 0.05), // naturally floats upward
+            radius: initialRadius,
+            maxRadius: maxRadius,
+            growth: 0.5 + Math.random() * 0.45,
+            life: life,
+            decay: decay,
+            baseAlpha: baseAlpha,
+            rotation: Math.random() * Math.PI * 2,
+            spin: (Math.random() - 0.5) * 0.025,
+            r: color.r,
+            g: color.g,
+            b: color.b
+          });
+        }
+
+        function addSmoke(x, y) {
+          if (lastX === null || lastY === null) {
+            lastX = x;
+            lastY = y;
+            createParticle(x, y);
+            return;
+          }
+
+          const dx = x - lastX;
+          const dy = y - lastY;
+          const dist = Math.hypot(dx, dy);
+
+          if (dist > 160) {
+            lastX = x;
+            lastY = y;
+            createParticle(x, y);
+            return;
+          }
+
+          // Interpolate for ultra-smooth smoke stream when cursor moves fast
+          const steps = Math.min(Math.max(Math.floor(dist / 9), 1), 6);
+          for (let i = 1; i <= steps; i++) {
+            const px = lastX + (dx / steps) * i;
+            const py = lastY + (dy / steps) * i;
+            createParticle(px, py, dx / steps, dy / steps);
+          }
+
+          lastX = x;
+          lastY = y;
+        }
+
+        function startLoop() {
+          if (!isLoopRunning) {
+            isLoopRunning = true;
+            requestAnimationFrame(renderLoop);
+          }
+        }
+
+        function renderLoop() {
+          ctx.clearRect(0, 0, width, height);
+
+          for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            p.life -= p.decay;
+
+            if (p.life <= 0) {
+              particles.splice(i, 1);
+              continue;
+            }
+
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vx *= 0.985;
+            p.vy *= 0.985;
+            p.radius = Math.min(p.radius + p.growth, p.maxRadius);
+            p.rotation += p.spin;
+
+            const currentAlpha = p.baseAlpha * p.life;
+            if (currentAlpha <= 0.005) {
+              particles.splice(i, 1);
+              continue;
+            }
+
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rotation);
+
+            // Soft radial gradient for ethereal billowing smoke
+            const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, p.radius);
+            grad.addColorStop(0, `rgba(${p.r}, ${p.g}, ${p.b}, ${currentAlpha.toFixed(3)})`);
+            grad.addColorStop(0.35, `rgba(${p.r}, ${p.g}, ${p.b}, ${(currentAlpha * 0.6).toFixed(3)})`);
+            grad.addColorStop(0.7, `rgba(${p.r}, ${p.g}, ${p.b}, ${(currentAlpha * 0.18).toFixed(3)})`);
+            grad.addColorStop(1, `rgba(${p.r}, ${p.g}, ${p.b}, 0)`);
+
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(0, 0, p.radius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          }
+
+          if (particles.length > 0) {
+            requestAnimationFrame(renderLoop);
+          } else {
+            isLoopRunning = false;
+            ctx.clearRect(0, 0, width, height);
+          }
+        }
+
+        window.addEventListener("mousemove", (e) => {
+          addSmoke(e.clientX, e.clientY);
+          startLoop();
+        }, { passive: true });
+
+        window.addEventListener("mouseleave", () => {
+          lastX = null;
+          lastY = null;
+        });
+
+        window.addEventListener("touchmove", (e) => {
+          if (e.touches && e.touches.length > 0) {
+            addSmoke(e.touches[0].clientX, e.touches[0].clientY);
+            startLoop();
+          }
+        }, { passive: true });
+
+        window.addEventListener("touchend", () => {
+          lastX = null;
+          lastY = null;
+        });
+      })();
     });
   </script>
+
+  <!-- Smoke Particle Trail Canvas -->
+  <canvas id="smoke-trail-canvas" class="fixed inset-0 pointer-events-none z-[9998]" aria-hidden="true"></canvas>
 
   <!-- Floating Figma-style Toolbar -->
   <div class="figma-toolbar fixed bottom-6 left-1/2 -translate-x-1/2 z-[9999] bg-[#2C2C2C]/95 backdrop-blur-md border border-white/10 px-4 py-2 rounded-xl shadow-[0_15px_30px_rgba(0,0,0,0.25)] flex items-center gap-1.5 text-white max-xs:px-3 max-xs:gap-1">

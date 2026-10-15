@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <filter id="cursor-shadow" x="-30%" y="-30%" width="170%" height="170%">
+      <feDropShadow dx="1" dy="1.5" stdDeviation="1.2" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <g filter="url(#cursor-shadow)">
+    <!-- Base hand path -->
+    <path d="M10 2 C8.895 2 8 2.895 8 4 L8 14.5 C7.2 13.8 6.1 13.5 5.2 14.1 C4.1 14.9 3.8 16.3 4.5 17.4 L7.2 21.8 C8.4 23.8 10.5 25.2 12.8 25.6 L15.8 26.1 C18.5 26.5 21.2 25.1 22.3 22.6 L23.4 20 C23.8 19.1 23.3 18 22.3 17.6 C21.8 17.4 21.3 17.5 20.8 17.8 L20.5 14.8 C20.4 13.9 19.6 13.2 18.7 13.2 C18.3 13.2 17.9 13.4 17.6 13.7 C17.3 12.8 16.4 12.1 15.4 12.1 C15 12.1 14.6 12.3 14.3 12.5 L14.3 11.2 C14.3 10.3 13.5 9.5 12.6 9.5 C12.3 9.5 12 9.6 11.8 9.7 L11.8 4 C11.8 2.895 10.905 2 10 2 Z" 
+          fill="#FFFFFF" 
+          stroke="#0F172A" 
+          stroke-width="1.6" 
+          stroke-linejoin="round"/>
+    <!-- Sleek Figma Blue Cuff Accent -->
+    <path d="M10.5 25.2 L16.5 26" stroke="#18A0FB" stroke-width="2.2" stroke-linecap="round"/>
+    <!-- Subtle inner creases -->
+    <path d="M11.8 11.5 L11.8 17" stroke="#CBD5E1" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M14.3 13.8 L14.3 18" stroke="#CBD5E1" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M17.3 15 L17.3 18.5" stroke="#CBD5E1" stroke-width="1.2" stroke-linecap="round"/>
+    <!-- Finger point highlight -->
+    <circle cx="10" cy="4" r="1" fill="#18A0FB"/>
+  </g>
+</svg>
