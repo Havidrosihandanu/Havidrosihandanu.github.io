@@ -36,13 +36,19 @@
       cursor: url("assets/img/cursor.png"), auto;
     }
 
-    /* Hover animations for profile image and figma name textbox */
-    .profile-image {
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    /* Synchronized hover animation for profile silhouette and contour line */
+    .profile-silhouette-wrapper {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+      will-change: transform;
     }
-    .profile-image:hover {
-      transform: translateY(-8px) scale(1.05) rotate(2deg) !important;
-      filter: drop-shadow(0 20px 30px rgba(24, 160, 251, 0.25)) !important;
+    .profile-silhouette-wrapper:hover {
+      transform: translateY(-6px);
+    }
+    .profile-image {
+      transition: filter 0.4s ease;
+    }
+    .profile-silhouette-wrapper:hover .profile-image {
+      filter: drop-shadow(0 20px 32px rgba(56, 189, 248, 0.16));
     }
 
     .figma-name-textbox {
@@ -233,57 +239,93 @@
       cursor: url("assets/img/cursor-pointer.svg") 10 2, pointer !important;
     }
 
-    /* Scroll Reveal Entrance Animations */
+    /* Professional Scroll Entrance Animations (Apple/Linear Blur-to-Focus & 3D Tilt) */
     .reveal-on-scroll {
       opacity: 0;
       transform: translateY(32px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform;
+      filter: blur(8px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+                  filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform, filter;
     }
     .reveal-on-scroll.in-view {
       opacity: 1;
       transform: translateY(0);
+      filter: blur(0);
     }
 
     .reveal-scale {
       opacity: 0;
-      transform: scale(0.92) translateY(24px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform;
+      transform: perspective(1000px) rotateX(8deg) translateY(36px) scale(0.96);
+      filter: blur(6px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+                  filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform, filter;
     }
     .reveal-scale.in-view {
       opacity: 1;
-      transform: scale(1) translateY(0);
+      transform: perspective(1000px) rotateX(0deg) translateY(0) scale(1);
+      filter: blur(0);
     }
 
     .reveal-left {
       opacity: 0;
-      transform: translateX(-35px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform;
+      transform: translateX(-40px);
+      filter: blur(8px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+                  filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform, filter;
     }
     .reveal-left.in-view {
       opacity: 1;
       transform: translateX(0);
+      filter: blur(0);
     }
 
     .reveal-right {
       opacity: 0;
-      transform: translateX(35px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform;
+      transform: translateX(40px);
+      filter: blur(8px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+                  filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform, filter;
     }
     .reveal-right.in-view {
       opacity: 1;
       transform: translateX(0);
+      filter: blur(0);
     }
 
+    /* Stagger Delays */
+    .delay-75  { transition-delay: 75ms; }
     .delay-100 { transition-delay: 100ms; }
     .delay-150 { transition-delay: 150ms; }
     .delay-200 { transition-delay: 200ms; }
+    .delay-250 { transition-delay: 250ms; }
     .delay-300 { transition-delay: 300ms; }
+    .delay-350 { transition-delay: 350ms; }
     .delay-400 { transition-delay: 400ms; }
     .delay-500 { transition-delay: 500ms; }
+
+    /* Navbar Scrolled State */
+    header.navbar.scrolled .nav-container {
+      background-color: rgba(255, 255, 255, 0.94) !important;
+      border-color: rgba(226, 232, 240, 0.95) !important;
+      box-shadow: 0 14px 35px -5px rgba(15, 23, 42, 0.08), 0 0 1px 1px rgba(24, 160, 251, 0.12) !important;
+      padding-top: 0.45rem !important;
+      padding-bottom: 0.45rem !important;
+    }
+
+    .nav-link.active {
+      background-color: #E8F4FF !important;
+      color: #18A0FB !important;
+      font-weight: 800 !important;
+      box-shadow: 0 2px 8px rgba(24, 160, 251, 0.12) !important;
+    }
     
     @keyframes rotateCircles {
       from {
@@ -370,8 +412,58 @@
       @apply bg-[#18A0FB] w-6;
     }
 
+    .carousel-track {
+      touch-action: pan-y pinch-zoom;
+    }
+    .carousel-track img {
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      user-drag: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
     .figma-handle {
       @apply absolute w-2.5 h-2.5 bg-white border border-[#18A0FB] z-10;
+    }
+
+    /* Elegant Silhouette Contour Light Beam Animations */
+    .silhouette-light-beam {
+      stroke-dasharray: 24 76;
+      stroke-dashoffset: 0;
+      animation: circulateSilhouette 4.8s linear infinite;
+      transition: filter 0.3s ease, opacity 0.3s ease;
+    }
+
+    @keyframes circulateSilhouette {
+      from {
+        stroke-dashoffset: 100;
+      }
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .profile-silhouette-wrapper:hover .silhouette-light-beam {
+      opacity: 1;
+      filter: url(#softSilhouetteGlowHover);
+    }
+
+    @keyframes pulseSlow {
+      0%, 100% {
+        opacity: 0.5;
+        transform: scale(0.98);
+      }
+      50% {
+        opacity: 0.8;
+        transform: scale(1.02);
+      }
+    }
+
+    .animate-pulse-slow {
+      animation: pulseSlow 5s ease-in-out infinite;
     }
 
     /* Hero Name Textbox Selection Border Override */
@@ -417,12 +509,26 @@
     }
     
     .title-section::after {
+      content: '' !important;
+      display: block !important;
+      width: 0 !important;
+      height: 5px !important;
       background: #18A0FB !important;
-      transition: all 0.3s ease !important;
+      margin-top: 12px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      border-radius: 9999px !important;
+      opacity: 0 !important;
+      transition: width 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.25s, opacity 0.5s ease 0.25s !important;
+    }
+    
+    .title-section.in-view::after {
+      width: 52px !important;
+      opacity: 1 !important;
     }
     
     .title-section:hover::after {
-      width: 96px !important;
+      width: 80px !important;
     }
     
     #certificate .certificate-card {
@@ -570,11 +676,14 @@
 </head>
 
 <body class="font-sans bg-white text-slate-800 overflow-x-hidden antialiased">
+  <!-- Top Reading Scroll Progress Bar -->
+  <div id="scroll-progress-bar" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-[#18A0FB] via-[#A259FF] to-[#04D27F] z-[10001] w-0 transition-[width] duration-75 ease-out pointer-events-none shadow-[0_1px_8px_rgba(24,160,251,0.5)]"></div>
+
   <!-- Modern Floating Capsule Navbar -->
-  <header class="navbar fixed top-6 left-1/2 -translate-x-1/2 z-[1000] w-[90%] max-w-[850px] transition-all duration-300">
-    <div class="nav-container flex justify-between items-center bg-white/80 backdrop-blur-md border border-slate-200/80 px-6 py-2.5 rounded-full shadow-[0_10px_30px_rgba(24,160,251,0.04)] w-full transition-all duration-300 relative">
+  <header class="navbar fixed top-5 left-1/2 -translate-x-1/2 z-[1000] w-[92%] sm:w-auto max-w-[620px] transition-all duration-300">
+    <div class="nav-container flex justify-between items-center gap-6 sm:gap-8 bg-white/90 backdrop-blur-md border border-slate-200/80 px-4 sm:px-5 py-2 rounded-full shadow-[0_8px_25px_rgba(15,23,42,0.06)] w-full transition-all duration-300 relative">
       <!-- Logo -->
-      <a href="#home" class="flex items-center gap-0.5 font-outfit font-black text-2xl tracking-tighter text-slate-900 group select-none transition-transform duration-200 hover:scale-[1.01]">
+      <a href="#home" class="flex items-center gap-0.5 font-outfit font-black text-xl tracking-tight text-slate-900 group select-none transition-transform duration-200 hover:scale-[1.02] pl-1">
         <span>havid</span><span class="text-[#18A0FB] transition-all duration-300 group-hover:translate-x-0.5 group-hover:scale-125 inline-block">.</span>
       </a>
       
@@ -586,13 +695,13 @@
       </button>
 
       <!-- Nav Links -->
-      <nav class="max-md:hidden max-md:absolute max-md:top-[60px] max-md:left-0 max-md:right-0 max-md:bg-white/95 max-md:backdrop-blur-md max-md:border max-md:border-slate-200/80 max-md:rounded-3xl max-md:p-4 max-md:shadow-xl max-md:w-full">
-        <ul class="flex gap-2 items-center max-md:flex-col max-md:gap-2.5">
-          <li class="max-md:w-full"><a href="#home" class="nav-link relative px-3.5 py-1.5 rounded-full text-slate-600 font-outfit font-bold text-[0.9em] tracking-wide transition-all duration-200 hover:bg-slate-100/80 hover:text-[#18A0FB] max-md:block max-md:text-center max-md:w-full max-md:py-2">Home</a></li>
-          <li class="max-md:w-full"><a href="#about" class="nav-link relative px-3.5 py-1.5 rounded-full text-slate-600 font-outfit font-bold text-[0.9em] tracking-wide transition-all duration-200 hover:bg-slate-100/80 hover:text-[#18A0FB] max-md:block max-md:text-center max-md:w-full max-md:py-2">About</a></li>
-          <li class="max-md:w-full"><a href="#project" class="nav-link relative px-3.5 py-1.5 rounded-full text-slate-600 font-outfit font-bold text-[0.9em] tracking-wide transition-all duration-200 hover:bg-slate-100/80 hover:text-[#18A0FB] max-md:block max-md:text-center max-md:w-full max-md:py-2">Project</a></li>
-          <li class="max-md:w-full"><a href="#certificate" class="nav-link relative px-3.5 py-1.5 rounded-full text-slate-600 font-outfit font-bold text-[0.9em] tracking-wide transition-all duration-200 hover:bg-slate-100/80 hover:text-[#18A0FB] max-md:block max-md:text-center max-md:w-full max-md:py-2">Certificate</a></li>
-          <li class="max-md:w-full"><a href="#contact" class="nav-link relative px-3.5 py-1.5 rounded-full text-slate-600 font-outfit font-bold text-[0.9em] tracking-wide transition-all duration-200 hover:bg-slate-100/80 hover:text-[#18A0FB] max-md:block max-md:text-center max-md:w-full max-md:py-2">Contact</a></li>
+      <nav class="max-md:hidden max-md:absolute max-md:top-[56px] max-md:left-0 max-md:right-0 max-md:bg-white/95 max-md:backdrop-blur-md max-md:border max-md:border-slate-200/80 max-md:rounded-2xl max-md:p-3 max-md:shadow-xl max-md:w-full">
+        <ul class="flex gap-1 items-center max-md:flex-col max-md:gap-1.5">
+          <li class="max-md:w-full"><a href="#home" class="nav-link relative px-3 py-1.5 rounded-full text-slate-600 font-outfit font-bold text-[13px] tracking-wide transition-all duration-200 hover:bg-slate-100/80 hover:text-[#18A0FB] max-md:block max-md:text-center max-md:w-full max-md:py-2">Home</a></li>
+          <li class="max-md:w-full"><a href="#about" class="nav-link relative px-3 py-1.5 rounded-full text-slate-600 font-outfit font-bold text-[13px] tracking-wide transition-all duration-200 hover:bg-slate-100/80 hover:text-[#18A0FB] max-md:block max-md:text-center max-md:w-full max-md:py-2">About</a></li>
+          <li class="max-md:w-full"><a href="#project" class="nav-link relative px-3 py-1.5 rounded-full text-slate-600 font-outfit font-bold text-[13px] tracking-wide transition-all duration-200 hover:bg-slate-100/80 hover:text-[#18A0FB] max-md:block max-md:text-center max-md:w-full max-md:py-2">Project</a></li>
+          <li class="max-md:w-full"><a href="#certificate" class="nav-link relative px-3 py-1.5 rounded-full text-slate-600 font-outfit font-bold text-[13px] tracking-wide transition-all duration-200 hover:bg-slate-100/80 hover:text-[#18A0FB] max-md:block max-md:text-center max-md:w-full max-md:py-2">Certificate</a></li>
+          <li class="max-md:w-full"><a href="#contact" class="nav-link relative px-3 py-1.5 rounded-full text-slate-600 font-outfit font-bold text-[13px] tracking-wide transition-all duration-200 hover:bg-slate-100/80 hover:text-[#18A0FB] max-md:block max-md:text-center max-md:w-full max-md:py-2">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -600,7 +709,7 @@
 
   <main>
     <!-- Profile Section (Kept structure and animations as requested, modified textbox & font only) -->
-    <section class="hero-section flex justify-center items-center min-h-screen py-20 px-5 relative overflow-hidden w-full bg-[#f8fafc]" id="home">
+    <section class="hero-section flex justify-center items-center min-h-[90vh] md:min-h-screen py-16 md:py-20 px-4 sm:px-5 relative overflow-hidden w-full bg-[#f8fafc]" id="home">
       <div class="watermark watermark-top text-[10vw] max-xs:text-[8vw] max-md:top-[44%] max-xs:top-[45%]">HAVID ROSIHANDANU</div>
       <div class="watermark watermark-full text-[10vw] max-xs:text-[8vw]">HAVID ROSIHANDANU</div>
       <div class="watermark watermark-bottom text-[10vw] max-xs:text-[8vw] max-md:top-[48%] max-xs:top-[47%]">HAVID ROSIHANDANU</div>
@@ -616,10 +725,61 @@
           <div class="small-circle absolute w-5 h-5 bg-[#18A0FB] rounded-full blur-[5px] opacity-40 z-[3] bottom-[20%] left-[25%]"></div>
           <div class="small-circle absolute w-5 h-5 bg-[#18A0FB] rounded-full blur-[5px] opacity-40 z-[3] bottom-[10%] right-[30%]"></div>
         </div>
-        <img src="./assets/img/havid.png" alt="Havid Rosihandanu" class="profile-image relative w-[250px] h-auto object-cover z-[4] max-md:w-[200px] max-xs:w-[180px]" />
+        <!-- Profile Image with Soft Elegant Contour Light Beam Following Havid's Exact Body Contour -->
+        <div class="profile-silhouette-wrapper relative w-[250px] max-md:w-[200px] max-xs:w-[180px] h-auto flex items-center justify-center z-[4] select-none cursor-pointer">
+          <!-- Soft Feathered Ambient Halo Matching Silhouette -->
+          <svg class="profile-backlight-svg absolute inset-0 w-full h-full pointer-events-none -z-10 blur-md opacity-35 animate-pulse-slow overflow-visible" viewBox="0 0 250 444.444">
+            <path d="M 103.0 6.0 C 97.8 6.2, 93.0 7.3, 88.0 10.0 C 83.0 12.7, 76.3 17.5, 73.0 22.0 C 69.7 26.5, 69.0 31.9, 68.0 37.0 C 67.0 42.2, 66.8 47.9, 67.0 53.1 C 67.2 58.2, 67.7 63.1, 69.0 68.1 C 70.3 73.1, 72.8 78.1, 75.0 83.1 C 77.2 88.1, 80.8 92.9, 82.0 98.1 C 83.2 103.3, 83.0 109.1, 82.0 114.1 C 81.0 119.1, 79.5 124.5, 76.0 128.1 C 72.5 131.8, 66.2 133.3, 61.0 136.1 C 55.8 139.0, 49.3 141.1, 45.0 145.1 C 40.7 149.1, 37.3 155.2, 35.0 160.2 C 32.7 165.2, 32.3 170.2, 31.0 175.2 C 29.7 180.2, 28.3 185.0, 27.0 190.2 C 25.7 195.4, 24.3 201.0, 23.0 206.2 C 21.7 211.4, 20.5 216.2, 19.0 221.2 C 17.5 226.2, 15.5 231.1, 14.0 236.2 C 12.5 241.4, 11.7 247.1, 10.0 252.3 C 8.3 257.4, 4.5 262.3, 4.0 267.3 C 3.5 272.3, 6.2 277.3, 7.0 282.3 C 7.8 287.3, 8.0 292.1, 9.0 297.3 C 10.0 302.5, 11.3 308.1, 13.0 313.3 C 14.7 318.5, 16.2 323.5, 19.0 328.3 C 21.8 333.2, 27.3 337.5, 30.0 342.3 C 32.7 347.2, 33.7 352.2, 35.0 357.4 C 36.3 362.5, 37.3 368.2, 38.0 373.4 C 38.7 378.5, 38.5 383.4, 39.0 388.4 C 39.5 393.4, 40.5 398.2, 41.0 403.4 C 41.5 408.6, 41.5 414.2, 42.0 419.4 C 42.5 424.6, 42.5 430.4, 44.0 434.4 C 45.5 438.4, 47.3 441.9, 51.0 443.4 C 54.7 444.9, 60.8 443.4, 66.0 443.4 C 71.2 443.4, 76.8 443.4, 82.0 443.4 C 87.2 443.4, 92.0 443.4, 97.0 443.4 C 102.0 443.4, 106.8 443.4, 112.0 443.4 C 117.2 443.4, 122.8 443.4, 128.0 443.4 C 133.2 443.4, 138.0 443.4, 143.0 443.4 C 148.0 443.4, 153.0 443.4, 158.0 443.4 C 163.0 443.4, 169.5 445.4, 173.0 443.4 C 176.5 441.4, 177.8 435.9, 179.0 431.4 C 180.2 426.9, 179.7 421.4, 180.0 416.4 C 180.3 411.4, 180.7 406.4, 181.0 401.4 C 181.3 396.4, 182.0 391.6, 182.0 386.4 C 182.0 381.2, 181.3 375.5, 181.0 370.4 C 180.7 365.2, 179.5 360.2, 180.0 355.4 C 180.5 350.5, 181.5 346.0, 184.0 341.3 C 186.5 336.7, 190.7 331.3, 195.0 327.3 C 199.3 323.3, 205.7 321.0, 210.0 317.3 C 214.3 313.6, 217.2 309.8, 221.0 305.3 C 224.8 300.8, 229.3 295.5, 233.0 290.3 C 236.7 285.1, 240.3 279.4, 243.0 274.3 C 245.7 269.1, 248.7 264.3, 249.0 259.3 C 249.3 254.3, 246.0 249.4, 245.0 244.2 C 244.0 239.1, 244.8 233.4, 243.0 228.2 C 241.2 223.1, 236.3 218.2, 234.0 213.2 C 231.7 208.2, 230.7 203.2, 229.0 198.2 C 227.3 193.2, 226.0 188.4, 224.0 183.2 C 222.0 178.0, 219.3 172.3, 217.0 167.2 C 214.7 162.0, 212.8 157.2, 210.0 152.2 C 207.2 147.1, 204.2 141.5, 200.0 137.1 C 195.8 132.8, 190.2 128.6, 185.0 126.1 C 179.8 123.6, 174.2 123.5, 169.0 122.1 C 163.8 120.8, 159.0 120.6, 154.0 118.1 C 149.0 115.6, 142.8 111.3, 139.0 107.1 C 135.2 102.9, 131.7 97.8, 131.0 93.1 C 130.3 88.4, 133.3 83.8, 135.0 79.1 C 136.7 74.4, 139.8 69.7, 141.0 65.1 C 142.2 60.4, 141.8 56.1, 142.0 51.1 C 142.2 46.0, 143.5 40.2, 142.0 35.0 C 140.5 29.9, 136.8 24.4, 133.0 20.0 C 129.2 15.7, 124.0 11.3, 119.0 9.0 C 114.0 6.7, 108.2 5.8, 103.0 6.0 Z" fill="rgba(56, 189, 248, 0.03)" stroke="rgba(192, 132, 252, 0.08)" stroke-width="5" />
+          </svg>
+
+          <!-- SVG Silhouette Contour Light Beam that exact-matches Havid's body outline -->
+          <svg class="profile-silhouette-svg absolute inset-0 w-full h-full pointer-events-none z-[6] overflow-visible" viewBox="0 0 250 444.444">
+            <defs>
+              <!-- Soft, Classy Celestial Gradient (Sky Cyan -> Soft Lavender -> Ice Blue -> Faded Tail) -->
+              <linearGradient id="softSilhouetteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#38BDF8" stop-opacity="0" />
+                <stop offset="30%" stop-color="#38BDF8" stop-opacity="0.85" />
+                <stop offset="65%" stop-color="#C084FC" stop-opacity="0.9" />
+                <stop offset="90%" stop-color="#93C5FD" stop-opacity="0.95" />
+                <stop offset="100%" stop-color="#FFFFFF" stop-opacity="1" />
+              </linearGradient>
+
+              <!-- Refined, Subtle Ethereal Bloom Filter -->
+              <filter id="softSilhouetteGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur1" />
+                <feGaussianBlur in="SourceGraphic" stdDeviation="0.8" result="blur2" />
+                <feMerge>
+                  <feMergeNode in="blur1" />
+                  <feMergeNode in="blur2" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+
+              <!-- Gentle Hover Bloom Filter -->
+              <filter id="softSilhouetteGlowHover" x="-25%" y="-25%" width="150%" height="150%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="3.2" result="blur1" />
+                <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="blur2" />
+                <feMerge>
+                  <feMergeNode in="blur1" />
+                  <feMergeNode in="blur2" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            <!-- Ultra-subtle Blueprint Guide Track outlining body contour -->
+            <path d="M 103.0 6.0 C 97.8 6.2, 93.0 7.3, 88.0 10.0 C 83.0 12.7, 76.3 17.5, 73.0 22.0 C 69.7 26.5, 69.0 31.9, 68.0 37.0 C 67.0 42.2, 66.8 47.9, 67.0 53.1 C 67.2 58.2, 67.7 63.1, 69.0 68.1 C 70.3 73.1, 72.8 78.1, 75.0 83.1 C 77.2 88.1, 80.8 92.9, 82.0 98.1 C 83.2 103.3, 83.0 109.1, 82.0 114.1 C 81.0 119.1, 79.5 124.5, 76.0 128.1 C 72.5 131.8, 66.2 133.3, 61.0 136.1 C 55.8 139.0, 49.3 141.1, 45.0 145.1 C 40.7 149.1, 37.3 155.2, 35.0 160.2 C 32.7 165.2, 32.3 170.2, 31.0 175.2 C 29.7 180.2, 28.3 185.0, 27.0 190.2 C 25.7 195.4, 24.3 201.0, 23.0 206.2 C 21.7 211.4, 20.5 216.2, 19.0 221.2 C 17.5 226.2, 15.5 231.1, 14.0 236.2 C 12.5 241.4, 11.7 247.1, 10.0 252.3 C 8.3 257.4, 4.5 262.3, 4.0 267.3 C 3.5 272.3, 6.2 277.3, 7.0 282.3 C 7.8 287.3, 8.0 292.1, 9.0 297.3 C 10.0 302.5, 11.3 308.1, 13.0 313.3 C 14.7 318.5, 16.2 323.5, 19.0 328.3 C 21.8 333.2, 27.3 337.5, 30.0 342.3 C 32.7 347.2, 33.7 352.2, 35.0 357.4 C 36.3 362.5, 37.3 368.2, 38.0 373.4 C 38.7 378.5, 38.5 383.4, 39.0 388.4 C 39.5 393.4, 40.5 398.2, 41.0 403.4 C 41.5 408.6, 41.5 414.2, 42.0 419.4 C 42.5 424.6, 42.5 430.4, 44.0 434.4 C 45.5 438.4, 47.3 441.9, 51.0 443.4 C 54.7 444.9, 60.8 443.4, 66.0 443.4 C 71.2 443.4, 76.8 443.4, 82.0 443.4 C 87.2 443.4, 92.0 443.4, 97.0 443.4 C 102.0 443.4, 106.8 443.4, 112.0 443.4 C 117.2 443.4, 122.8 443.4, 128.0 443.4 C 133.2 443.4, 138.0 443.4, 143.0 443.4 C 148.0 443.4, 153.0 443.4, 158.0 443.4 C 163.0 443.4, 169.5 445.4, 173.0 443.4 C 176.5 441.4, 177.8 435.9, 179.0 431.4 C 180.2 426.9, 179.7 421.4, 180.0 416.4 C 180.3 411.4, 180.7 406.4, 181.0 401.4 C 181.3 396.4, 182.0 391.6, 182.0 386.4 C 182.0 381.2, 181.3 375.5, 181.0 370.4 C 180.7 365.2, 179.5 360.2, 180.0 355.4 C 180.5 350.5, 181.5 346.0, 184.0 341.3 C 186.5 336.7, 190.7 331.3, 195.0 327.3 C 199.3 323.3, 205.7 321.0, 210.0 317.3 C 214.3 313.6, 217.2 309.8, 221.0 305.3 C 224.8 300.8, 229.3 295.5, 233.0 290.3 C 236.7 285.1, 240.3 279.4, 243.0 274.3 C 245.7 269.1, 248.7 264.3, 249.0 259.3 C 249.3 254.3, 246.0 249.4, 245.0 244.2 C 244.0 239.1, 244.8 233.4, 243.0 228.2 C 241.2 223.1, 236.3 218.2, 234.0 213.2 C 231.7 208.2, 230.7 203.2, 229.0 198.2 C 227.3 193.2, 226.0 188.4, 224.0 183.2 C 222.0 178.0, 219.3 172.3, 217.0 167.2 C 214.7 162.0, 212.8 157.2, 210.0 152.2 C 207.2 147.1, 204.2 141.5, 200.0 137.1 C 195.8 132.8, 190.2 128.6, 185.0 126.1 C 179.8 123.6, 174.2 123.5, 169.0 122.1 C 163.8 120.8, 159.0 120.6, 154.0 118.1 C 149.0 115.6, 142.8 111.3, 139.0 107.1 C 135.2 102.9, 131.7 97.8, 131.0 93.1 C 130.3 88.4, 133.3 83.8, 135.0 79.1 C 136.7 74.4, 139.8 69.7, 141.0 65.1 C 142.2 60.4, 141.8 56.1, 142.0 51.1 C 142.2 46.0, 143.5 40.2, 142.0 35.0 C 140.5 29.9, 136.8 24.4, 133.0 20.0 C 129.2 15.7, 124.0 11.3, 119.0 9.0 C 114.0 6.7, 108.2 5.8, 103.0 6.0 Z" fill="none" stroke="rgba(56, 189, 248, 0.12)" stroke-width="0.8" stroke-dasharray="2 3" />
+
+            <!-- Circulating Elegant Light Beam -->
+            <path class="silhouette-light-beam" d="M 103.0 6.0 C 97.8 6.2, 93.0 7.3, 88.0 10.0 C 83.0 12.7, 76.3 17.5, 73.0 22.0 C 69.7 26.5, 69.0 31.9, 68.0 37.0 C 67.0 42.2, 66.8 47.9, 67.0 53.1 C 67.2 58.2, 67.7 63.1, 69.0 68.1 C 70.3 73.1, 72.8 78.1, 75.0 83.1 C 77.2 88.1, 80.8 92.9, 82.0 98.1 C 83.2 103.3, 83.0 109.1, 82.0 114.1 C 81.0 119.1, 79.5 124.5, 76.0 128.1 C 72.5 131.8, 66.2 133.3, 61.0 136.1 C 55.8 139.0, 49.3 141.1, 45.0 145.1 C 40.7 149.1, 37.3 155.2, 35.0 160.2 C 32.7 165.2, 32.3 170.2, 31.0 175.2 C 29.7 180.2, 28.3 185.0, 27.0 190.2 C 25.7 195.4, 24.3 201.0, 23.0 206.2 C 21.7 211.4, 20.5 216.2, 19.0 221.2 C 17.5 226.2, 15.5 231.1, 14.0 236.2 C 12.5 241.4, 11.7 247.1, 10.0 252.3 C 8.3 257.4, 4.5 262.3, 4.0 267.3 C 3.5 272.3, 6.2 277.3, 7.0 282.3 C 7.8 287.3, 8.0 292.1, 9.0 297.3 C 10.0 302.5, 11.3 308.1, 13.0 313.3 C 14.7 318.5, 16.2 323.5, 19.0 328.3 C 21.8 333.2, 27.3 337.5, 30.0 342.3 C 32.7 347.2, 33.7 352.2, 35.0 357.4 C 36.3 362.5, 37.3 368.2, 38.0 373.4 C 38.7 378.5, 38.5 383.4, 39.0 388.4 C 39.5 393.4, 40.5 398.2, 41.0 403.4 C 41.5 408.6, 41.5 414.2, 42.0 419.4 C 42.5 424.6, 42.5 430.4, 44.0 434.4 C 45.5 438.4, 47.3 441.9, 51.0 443.4 C 54.7 444.9, 60.8 443.4, 66.0 443.4 C 71.2 443.4, 76.8 443.4, 82.0 443.4 C 87.2 443.4, 92.0 443.4, 97.0 443.4 C 102.0 443.4, 106.8 443.4, 112.0 443.4 C 117.2 443.4, 122.8 443.4, 128.0 443.4 C 133.2 443.4, 138.0 443.4, 143.0 443.4 C 148.0 443.4, 153.0 443.4, 158.0 443.4 C 163.0 443.4, 169.5 445.4, 173.0 443.4 C 176.5 441.4, 177.8 435.9, 179.0 431.4 C 180.2 426.9, 179.7 421.4, 180.0 416.4 C 180.3 411.4, 180.7 406.4, 181.0 401.4 C 181.3 396.4, 182.0 391.6, 182.0 386.4 C 182.0 381.2, 181.3 375.5, 181.0 370.4 C 180.7 365.2, 179.5 360.2, 180.0 355.4 C 180.5 350.5, 181.5 346.0, 184.0 341.3 C 186.5 336.7, 190.7 331.3, 195.0 327.3 C 199.3 323.3, 205.7 321.0, 210.0 317.3 C 214.3 313.6, 217.2 309.8, 221.0 305.3 C 224.8 300.8, 229.3 295.5, 233.0 290.3 C 236.7 285.1, 240.3 279.4, 243.0 274.3 C 245.7 269.1, 248.7 264.3, 249.0 259.3 C 249.3 254.3, 246.0 249.4, 245.0 244.2 C 244.0 239.1, 244.8 233.4, 243.0 228.2 C 241.2 223.1, 236.3 218.2, 234.0 213.2 C 231.7 208.2, 230.7 203.2, 229.0 198.2 C 227.3 193.2, 226.0 188.4, 224.0 183.2 C 222.0 178.0, 219.3 172.3, 217.0 167.2 C 214.7 162.0, 212.8 157.2, 210.0 152.2 C 207.2 147.1, 204.2 141.5, 200.0 137.1 C 195.8 132.8, 190.2 128.6, 185.0 126.1 C 179.8 123.6, 174.2 123.5, 169.0 122.1 C 163.8 120.8, 159.0 120.6, 154.0 118.1 C 149.0 115.6, 142.8 111.3, 139.0 107.1 C 135.2 102.9, 131.7 97.8, 131.0 93.1 C 130.3 88.4, 133.3 83.8, 135.0 79.1 C 136.7 74.4, 139.8 69.7, 141.0 65.1 C 142.2 60.4, 141.8 56.1, 142.0 51.1 C 142.2 46.0, 143.5 40.2, 142.0 35.0 C 140.5 29.9, 136.8 24.4, 133.0 20.0 C 129.2 15.7, 124.0 11.3, 119.0 9.0 C 114.0 6.7, 108.2 5.8, 103.0 6.0 Z" fill="none" stroke="url(#softSilhouetteGrad)" stroke-width="1.8" stroke-linecap="round" pathLength="100" filter="url(#softSilhouetteGlow)" />
+          </svg>
+
+          <!-- Havid Photo Cutout (Lockstep with wrapper & light beam) -->
+          <img src="./assets/img/havid.png" alt="Havid Rosihandanu" class="profile-image relative w-full h-auto object-cover z-[5] drop-shadow-[0_12px_28px_rgba(24,160,251,0.1)] select-none pointer-events-auto" />
+        </div>
         
         <!-- Modernized Figma Selection-style Textbox (Name flip animation kept) -->
-        <div class="figma-name-textbox relative z-[6] w-fit min-w-[450px] px-8 py-4 flex justify-center items-center text-center -mt-[30px] -rotate-3 bg-white border-2 border-[#18A0FB] rounded-none shadow-[0_15px_30px_rgba(24,160,251,0.12)] max-md:min-w-[280px] max-md:-mt-[20px] max-xs:min-w-[240px] max-xs:-mt-[15px]">
+        <div class="figma-name-textbox relative z-[10] w-fit min-w-[450px] max-w-[92vw] px-8 py-4 flex justify-center items-center text-center -mt-[30px] -rotate-3 bg-white border-2 border-[#18A0FB] rounded-none shadow-[0_15px_30px_rgba(24,160,251,0.12)] max-md:min-w-[280px] max-md:-mt-[20px] max-xs:min-w-[220px] max-xs:px-4 max-xs:py-2.5 max-xs:-mt-[15px] box-border">
           <!-- Figma corner selection handles -->
           <div class="figma-handle -top-[5px] -left-[5px]"></div>
           <div class="figma-handle -top-[5px] -right-[5px]"></div>
@@ -644,13 +804,13 @@
     </section>
 
     <!-- Modernized About Section (Light theme matching UX Case Study image) -->
-    <section class="about-section py-24 px-5 min-h-screen flex flex-col justify-center items-center w-full bg-white text-slate-800 relative overflow-hidden" id="about">
+    <section class="about-section py-16 md:py-20 px-4 sm:px-5 flex flex-col justify-center items-center w-full bg-white text-slate-800 relative overflow-hidden" id="about">
       <!-- Soft Ambient Glows -->
       <div class="absolute top-1/4 left-[10%] w-96 h-96 bg-[#18A0FB]/5 rounded-full blur-[100px] pointer-events-none"></div>
       <div class="absolute bottom-1/4 right-[10%] w-96 h-96 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none"></div>
 
-      <div class="about-container max-w-[1100px] w-full mx-auto relative z-[2]">
-        <h2 class="title-section reveal-on-scroll font-outfit text-4xl md:text-5xl font-black text-center mb-16 text-[#0F172A] relative after:content-[''] after:block after:w-16 after:h-1.5 after:bg-[#18A0FB] after:mt-4 after:mx-auto after:rounded-full">About Me</h2>
+      <div class="about-container max-w-[1000px] w-full mx-auto relative z-[2]">
+        <h2 class="title-section reveal-on-scroll font-outfit text-3xl sm:text-4xl md:text-[42px] font-black text-center mb-10 md:mb-12 text-[#0F172A] relative after:content-[''] after:block after:w-14 after:h-1.5 after:bg-[#18A0FB] after:mt-3 after:mx-auto after:rounded-full">About Me</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
           <!-- Stats Column -->
@@ -673,7 +833,7 @@
                 </div>
               </div>
 
-              <span class="stat-number text-3xl font-outfit font-black text-[#18A0FB] mb-2 transition-all duration-300">4+</span>
+              <span class="stat-number text-3xl font-outfit font-black text-[#18A0FB] mb-2 transition-all duration-300" data-counter="4" data-suffix="+">4+</span>
               <span class="text-sm text-slate-500 font-medium">Years Experience</span>
             </div>
 
@@ -695,7 +855,7 @@
                 </div>
               </div>
 
-              <span class="stat-number text-3xl font-outfit font-black text-[#18A0FB] mb-2 transition-all duration-300">6+</span>
+              <span class="stat-number text-3xl font-outfit font-black text-[#18A0FB] mb-2 transition-all duration-300" data-counter="6" data-suffix="+">6+</span>
               <span class="text-sm text-slate-500 font-medium">Projects Done</span>
             </div>
 
@@ -752,7 +912,7 @@
         </div>
 
         <!-- Figma Selection Box: Design Philosophy (Recreation of 'Problem Statement' in screenshot 1) -->
-        <div class="philosophy-card group reveal-on-scroll delay-200 relative w-full max-w-[850px] mx-auto p-10 bg-white border-2 border-[#18A0FB] shadow-[0_15px_40px_rgba(24,160,251,0.06)] text-center mt-20 max-md:p-6">
+        <div class="philosophy-card group reveal-on-scroll delay-200 relative w-full max-w-[850px] mx-auto p-8 sm:p-10 bg-white border-2 border-[#18A0FB] shadow-[0_15px_40px_rgba(24,160,251,0.06)] text-center mt-12 md:mt-16 max-md:p-6">
           <!-- Figma corner handles -->
           <div class="figma-handle -top-[5px] -left-[5px]"></div>
           <div class="figma-handle -top-[5px] -right-[5px]"></div>
@@ -769,70 +929,70 @@
             </div>
           </div>
           
-          <span class="inline-block px-3 py-1 bg-slate-100 border border-slate-200 rounded-full text-xs font-semibold text-slate-500 mb-6 font-outfit uppercase tracking-widest">Core Philosophy</span>
+          <span class="inline-block px-3 py-1 bg-slate-100 border border-slate-200 rounded-full text-xs font-semibold text-slate-500 mb-4 sm:mb-5 font-outfit uppercase tracking-widest">Core Philosophy</span>
           
-          <h3 class="text-3xl font-outfit font-extrabold text-[#0F172A] mb-4 transition-colors duration-300">My Philosophy</h3>
-          <p class="font-sans text-slate-600 text-[1.1rem] leading-relaxed max-w-[700px] mx-auto">
+          <h3 class="text-2xl sm:text-3xl font-outfit font-extrabold text-[#0F172A] mb-3 sm:mb-4 transition-colors duration-300">My Philosophy</h3>
+          <p class="font-sans text-slate-600 text-base sm:text-[1.05rem] leading-relaxed max-w-[700px] mx-auto">
             "Technology is only valuable when it solves real problems. I believe in building software that is not just functional, but deeply aligned with user needs and business goals — where every line of code serves a purpose and drives meaningful digital innovation."
           </p>
         </div>
 
         <!-- Our Process Section (Recreation of 'Our Process' circles in screenshot 2) -->
-        <div class="mt-24 w-full">
-          <h3 class="text-3xl font-outfit font-extrabold text-[#0F172A] text-center mb-12">My Process</h3>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 justify-center max-w-[850px] mx-auto">
+        <div class="mt-14 md:mt-16 w-full">
+          <h3 class="text-2xl sm:text-3xl font-outfit font-extrabold text-[#0F172A] text-center mb-8 sm:mb-10 reveal-on-scroll">My Process</h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 justify-center max-w-[850px] mx-auto">
             <!-- Empathize -->
-            <div class="flex flex-col items-center text-center group">
-              <div class="w-20 h-20 rounded-full bg-[#E8F4FF] flex items-center justify-center text-[#18A0FB] text-2xl mb-4 transition-transform duration-300 group-hover:scale-110 shadow-sm border border-[#18A0FB]/10">
+            <div class="flex flex-col items-center text-center group reveal-scale delay-75">
+              <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#E8F4FF] flex items-center justify-center text-[#18A0FB] text-xl sm:text-2xl mb-3 sm:mb-4 transition-transform duration-300 group-hover:scale-110 shadow-sm border border-[#18A0FB]/10">
                 <i class="fas fa-users"></i>
               </div>
-              <span class="font-outfit font-bold text-slate-800 text-lg">Empathize</span>
+              <span class="font-outfit font-bold text-slate-800 text-base sm:text-lg">Empathize</span>
             </div>
             <!-- Analyze -->
-            <div class="flex flex-col items-center text-center group">
-              <div class="w-20 h-20 rounded-full bg-[#E8F4FF] flex items-center justify-center text-[#18A0FB] text-2xl mb-4 transition-transform duration-300 group-hover:scale-110 shadow-sm border border-[#18A0FB]/10">
+            <div class="flex flex-col items-center text-center group reveal-scale delay-150">
+              <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#E8F4FF] flex items-center justify-center text-[#18A0FB] text-xl sm:text-2xl mb-3 sm:mb-4 transition-transform duration-300 group-hover:scale-110 shadow-sm border border-[#18A0FB]/10">
                 <i class="fas fa-chart-line"></i>
               </div>
-              <span class="font-outfit font-bold text-slate-800 text-lg">Analyze</span>
+              <span class="font-outfit font-bold text-slate-800 text-base sm:text-lg">Analyze</span>
             </div>
             <!-- Build -->
-            <div class="flex flex-col items-center text-center group">
-              <div class="w-20 h-20 rounded-full bg-[#E8F4FF] flex items-center justify-center text-[#18A0FB] text-2xl mb-4 transition-transform duration-300 group-hover:scale-110 shadow-sm border border-[#18A0FB]/10">
+            <div class="flex flex-col items-center text-center group reveal-scale delay-225">
+              <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#E8F4FF] flex items-center justify-center text-[#18A0FB] text-xl sm:text-2xl mb-3 sm:mb-4 transition-transform duration-300 group-hover:scale-110 shadow-sm border border-[#18A0FB]/10">
                 <i class="fas fa-code"></i>
               </div>
-              <span class="font-outfit font-bold text-slate-800 text-lg">Build</span>
+              <span class="font-outfit font-bold text-slate-800 text-base sm:text-lg">Build</span>
             </div>
             <!-- Iterate -->
-            <div class="flex flex-col items-center text-center group">
-              <div class="w-20 h-20 rounded-full bg-[#E8F4FF] flex items-center justify-center text-[#18A0FB] text-2xl mb-4 transition-transform duration-300 group-hover:scale-110 shadow-sm border border-[#18A0FB]/10">
+            <div class="flex flex-col items-center text-center group reveal-scale delay-300">
+              <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#E8F4FF] flex items-center justify-center text-[#18A0FB] text-xl sm:text-2xl mb-3 sm:mb-4 transition-transform duration-300 group-hover:scale-110 shadow-sm border border-[#18A0FB]/10">
                 <i class="fas fa-arrows-rotate"></i>
               </div>
-              <span class="font-outfit font-bold text-slate-800 text-lg">Iterate</span>
+              <span class="font-outfit font-bold text-slate-800 text-base sm:text-lg">Iterate</span>
             </div>
           </div>
         </div>
 
         <!-- Business Challenges Section (Recreation of list with coral/peach arrows in screenshot 2) -->
-        <div class="mt-24 max-w-[850px] mx-auto text-left w-full">
-          <h3 class="text-3xl font-outfit font-extrabold text-[#0F172A] text-center md:text-left mb-8">Challenges I Tackle</h3>
-          <ul class="space-y-5 font-sans text-[1.05rem] text-slate-600">
-            <li class="flex items-start gap-4">
+        <div class="mt-14 md:mt-16 max-w-[850px] mx-auto text-left w-full">
+          <h3 class="text-2xl sm:text-3xl font-outfit font-extrabold text-[#0F172A] text-center md:text-left mb-6 sm:mb-8 reveal-on-scroll">Challenges I Tackle</h3>
+          <ul class="space-y-4 sm:space-y-5 font-sans text-base sm:text-[1.05rem] text-slate-600">
+            <li class="flex items-start gap-4 reveal-on-scroll delay-75">
               <span class="text-[#FF7A7A] text-xl font-bold select-none shrink-0 mt-0.5">&rarr;</span>
               <span>Bridging the gap between business requirements and technical implementation to deliver products that users actually need.</span>
             </li>
-            <li class="flex items-start gap-4">
+            <li class="flex items-start gap-4 reveal-on-scroll delay-150">
               <span class="text-[#FF7A7A] text-xl font-bold select-none shrink-0 mt-0.5">&rarr;</span>
               <span>Turning ambiguous, real-world problems into structured, scalable software architectures through systematic analysis.</span>
             </li>
-            <li class="flex items-start gap-4">
+            <li class="flex items-start gap-4 reveal-on-scroll delay-200">
               <span class="text-[#FF7A7A] text-xl font-bold select-none shrink-0 mt-0.5">&rarr;</span>
               <span>Managing end-to-end product development — from ideation and user research to prototyping, development, and deployment.</span>
             </li>
-            <li class="flex items-start gap-4">
+            <li class="flex items-start gap-4 reveal-on-scroll delay-250">
               <span class="text-[#FF7A7A] text-xl font-bold select-none shrink-0 mt-0.5">&rarr;</span>
               <span>Leveraging emerging technologies like AI, cloud services, and modern frameworks to drive digital transformation.</span>
             </li>
-            <li class="flex items-start gap-4">
+            <li class="flex items-start gap-4 reveal-on-scroll delay-300">
               <span class="text-[#FF7A7A] text-xl font-bold select-none shrink-0 mt-0.5">&rarr;</span>
               <span>Aligning technical decisions with product strategy and measurable business outcomes in cross-functional teams.</span>
             </li>
@@ -843,19 +1003,19 @@
     </section>
 
     <!-- Modernized Projects Section -->
-    <section class="project-section py-24 px-5 min-h-screen flex flex-col justify-center items-center w-full bg-[#f8fafc] text-slate-800 text-center max-md:py-16 max-md:px-2.5 max-xs:py-[40px] max-xs:px-2 overflow-hidden" id="project">
-      <h2 class="title-section reveal-on-scroll font-outfit text-4xl md:text-5xl font-black text-center mb-16 relative after:content-[''] after:block after:w-16 after:h-1.5 after:bg-[#18A0FB] after:mt-4 after:mx-auto after:rounded-full">Projects</h2>
+    <section class="project-section py-16 md:py-20 px-4 sm:px-5 flex flex-col justify-center items-center w-full bg-[#f8fafc] text-slate-800 text-center overflow-hidden" id="project">
+      <h2 class="title-section reveal-on-scroll font-outfit text-3xl sm:text-4xl md:text-[42px] font-black text-center mb-8 sm:mb-10 relative after:content-[''] after:block after:w-14 after:h-1.5 after:bg-[#18A0FB] after:mt-3 after:mx-auto after:rounded-full">Projects</h2>
 
-      <div class="carousel-container reveal-scale delay-150 relative max-w-[960px] w-full mx-auto mb-10 overflow-hidden py-4 max-md:px-2.5 max-xs:px-2">
-        <button class="carousel-button prev absolute top-1/2 -translate-y-1/2 w-12 h-12 bg-white/95 border border-slate-200/80 rounded-full flex items-center justify-center text-slate-600 shadow-md cursor-pointer z-10 transition-all duration-300 hover:bg-[#18A0FB] hover:text-white hover:border-[#18A0FB] hover:scale-105 active:scale-95 left-1 sm:left-3" aria-label="Previous slide">
+      <div class="carousel-container reveal-scale delay-150 relative max-w-[1140px] w-full mx-auto mb-8 overflow-hidden py-2 px-1 xs:px-2 sm:px-4">
+        <button class="carousel-button prev absolute top-1/2 -translate-y-1/2 w-8 h-8 xs:w-9 xs:h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 bg-white/90 sm:bg-white/95 border border-slate-200/80 rounded-full flex items-center justify-center text-slate-700 shadow-md cursor-pointer z-20 transition-all duration-300 hover:bg-[#18A0FB] hover:text-white hover:border-[#18A0FB] hover:scale-105 active:scale-95 text-xs sm:text-base left-1 xs:left-2 sm:left-3 md:left-4" aria-label="Previous slide">
           &#10094;
         </button>
 
         <div class="carousel-track flex">
           <!-- Slide 1 -->
-          <div class="carousel-slide min-w-full shrink-0 flex justify-center items-center px-12 sm:px-16 box-border">
+          <div class="carousel-slide min-w-full shrink-0 flex justify-center items-center px-2 xs:px-4 sm:px-8 md:px-12 box-border">
             <!-- Project 1 -->
-            <div class="card relative bg-white border-[1.5px] border-[#18A0FB] rounded-none shadow-[0_10px_25px_rgba(24,160,251,0.06)] hover:shadow-[0_20px_45px_rgba(24,160,251,0.12)] hover:-translate-y-1.5 transition-all duration-300 w-full max-w-[760px] flex flex-col mx-auto">
+            <div class="card relative bg-white border-[1.5px] border-[#18A0FB] rounded-none shadow-[0_10px_25px_rgba(24,160,251,0.06)] hover:shadow-[0_20px_45px_rgba(24,160,251,0.12)] hover:-translate-y-1.5 transition-all duration-300 w-full max-w-[1020px] flex flex-col mx-auto">
               <!-- Figma corner selection handles -->
               <div class="figma-handle -top-[5px] -left-[5px]"></div>
               <div class="figma-handle -top-[5px] -right-[5px]"></div>
@@ -863,7 +1023,7 @@
               <div class="figma-handle -bottom-[5px] -right-[5px]"></div>
 
               <!-- Browser Mockup Wrapper -->
-              <div class="bg-[#F8FAFC] p-4 pb-0 border-b border-slate-100 flex-shrink-0">
+              <div class="bg-[#F8FAFC] p-2 xs:p-3 sm:p-4 pb-0 border-b border-slate-100 flex-shrink-0">
                 <div class="bg-white rounded-t-lg shadow-[0_8px_20px_rgba(0,0,0,0.02)] border-t border-x border-slate-200/80 overflow-hidden flex flex-col">
                   <!-- Browser Header -->
                   <div class="flex items-center justify-between bg-slate-50 px-3 py-2 border-b border-slate-200/50">
@@ -878,7 +1038,7 @@
                     <div class="w-6"></div>
                   </div>
                   <!-- Image Viewport -->
-                  <div class="card-image-slider relative h-[250px] sm:h-[320px] md:h-[380px] max-xs:h-[180px] overflow-hidden">
+                  <div class="card-image-slider relative h-[190px] xs:h-[240px] sm:h-[320px] md:h-[400px] lg:h-[460px] overflow-hidden">
                     <div class="card-images flex h-full relative">
                       <img src="assets/img/aneka.png" alt="Aneka Logistik Image 1" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
                       <img src="assets/img/aneka (2).png" alt="Aneka Logistik Image 2" style="display: none" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
@@ -894,10 +1054,10 @@
               </div>
 
               <!-- Card Body Content -->
-              <div class="card-content p-8 flex-grow flex flex-col text-left max-md:p-6 max-xs:p-5 bg-white">
-                <span class="inline-block px-2.5 py-0.5 bg-[#18A0FB]/10 border border-[#18A0FB]/20 rounded-sm text-[10px] font-extrabold text-[#18A0FB] mb-3 w-fit uppercase tracking-wider font-outfit">Logistics Web</span>
-                <h3 class="text-2xl font-outfit font-black text-[#18A0FB] mb-3 hover:opacity-80 transition-opacity duration-200">Aneka Logistik</h3>
-                <p class="text-slate-500 font-sans text-[0.95rem] leading-relaxed mb-6 flex-grow font-semibold">
+              <div class="card-content p-4 xs:p-5 sm:p-6 md:p-8 flex-grow flex flex-col text-left bg-white">
+                <span class="inline-block px-2.5 py-0.5 bg-[#18A0FB]/10 border border-[#18A0FB]/20 rounded-sm text-[10px] sm:text-xs font-extrabold text-[#18A0FB] mb-2 sm:mb-3 w-fit uppercase tracking-wider font-outfit">Logistics Web</span>
+                <h3 class="text-xl sm:text-2xl md:text-3xl font-outfit font-black text-[#18A0FB] mb-2 sm:mb-3 hover:opacity-80 transition-opacity duration-200">Aneka Logistik</h3>
+                <p class="text-slate-500 font-sans text-xs xs:text-sm sm:text-base leading-relaxed mb-4 sm:mb-6 flex-grow font-semibold">
                   Aneka logistik is a website used to manage and monitor logistics processes efficiently.
                 </p>
               </div>
@@ -905,9 +1065,9 @@
           </div>
 
           <!-- Slide 2 -->
-          <div class="carousel-slide min-w-full shrink-0 flex justify-center items-center px-12 sm:px-16 box-border">
+          <div class="carousel-slide min-w-full shrink-0 flex justify-center items-center px-2 xs:px-4 sm:px-8 md:px-12 box-border">
             <!-- Project 2 -->
-            <div class="card relative bg-white border-[1.5px] border-[#18A0FB] rounded-none shadow-[0_10px_25px_rgba(24,160,251,0.06)] hover:shadow-[0_20px_45px_rgba(24,160,251,0.12)] hover:-translate-y-1.5 transition-all duration-300 w-full max-w-[760px] flex flex-col mx-auto">
+            <div class="card relative bg-white border-[1.5px] border-[#18A0FB] rounded-none shadow-[0_10px_25px_rgba(24,160,251,0.06)] hover:shadow-[0_20px_45px_rgba(24,160,251,0.12)] hover:-translate-y-1.5 transition-all duration-300 w-full max-w-[1020px] flex flex-col mx-auto">
               <!-- Figma corner selection handles -->
               <div class="figma-handle -top-[5px] -left-[5px]"></div>
               <div class="figma-handle -top-[5px] -right-[5px]"></div>
@@ -915,7 +1075,7 @@
               <div class="figma-handle -bottom-[5px] -right-[5px]"></div>
 
               <!-- Browser Mockup Wrapper -->
-              <div class="bg-[#F8FAFC] p-4 pb-0 border-b border-slate-100 flex-shrink-0">
+              <div class="bg-[#F8FAFC] p-2 xs:p-3 sm:p-4 pb-0 border-b border-slate-100 flex-shrink-0">
                 <div class="bg-white rounded-t-lg shadow-[0_8px_20px_rgba(0,0,0,0.02)] border-t border-x border-slate-200/80 overflow-hidden flex flex-col">
                   <!-- Browser Header -->
                   <div class="flex items-center justify-between bg-slate-50 px-3 py-2 border-b border-slate-200/50">
@@ -930,7 +1090,7 @@
                     <div class="w-6"></div>
                   </div>
                   <!-- Image Viewport -->
-                  <div class="card-image-slider relative h-[250px] sm:h-[320px] md:h-[380px] max-xs:h-[180px] overflow-hidden">
+                  <div class="card-image-slider relative h-[190px] xs:h-[240px] sm:h-[320px] md:h-[400px] lg:h-[460px] overflow-hidden">
                     <div class="card-images flex h-full relative">
                       <img src="assets/img/perpus.png" alt="SI Pustaka Image 1" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
                       <img src="assets/img/perpus (2).png" alt="SI Pustaka Image 2" style="display: none" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
@@ -944,10 +1104,10 @@
               </div>
 
               <!-- Card Body Content -->
-              <div class="card-content p-8 flex-grow flex flex-col text-left max-md:p-6 max-xs:p-5 bg-white">
-                <span class="inline-block px-2.5 py-0.5 bg-[#18A0FB]/10 border border-[#18A0FB]/20 rounded-sm text-[10px] font-extrabold text-[#18A0FB] mb-3 w-fit uppercase tracking-wider font-outfit">Library App</span>
-                <h3 class="text-2xl font-outfit font-black text-[#18A0FB] mb-3 hover:opacity-80 transition-opacity duration-200">SI Pustaka</h3>
-                <p class="text-slate-500 font-sans text-[0.95rem] leading-relaxed mb-6 flex-grow font-semibold">
+              <div class="card-content p-4 xs:p-5 sm:p-6 md:p-8 flex-grow flex flex-col text-left bg-white">
+                <span class="inline-block px-2.5 py-0.5 bg-[#18A0FB]/10 border border-[#18A0FB]/20 rounded-sm text-[10px] sm:text-xs font-extrabold text-[#18A0FB] mb-2 sm:mb-3 w-fit uppercase tracking-wider font-outfit">Library App</span>
+                <h3 class="text-xl sm:text-2xl md:text-3xl font-outfit font-black text-[#18A0FB] mb-2 sm:mb-3 hover:opacity-80 transition-opacity duration-200">SI Pustaka</h3>
+                <p class="text-slate-500 font-sans text-xs xs:text-sm sm:text-base leading-relaxed mb-4 sm:mb-6 flex-grow font-semibold">
                   SI Pustaka is a library information system that facilitates the management and borrowing of books online.
                 </p>
               </div>
@@ -955,9 +1115,9 @@
           </div>
 
           <!-- Slide 3 -->
-          <div class="carousel-slide min-w-full shrink-0 flex justify-center items-center px-12 sm:px-16 box-border">
+          <div class="carousel-slide min-w-full shrink-0 flex justify-center items-center px-2 xs:px-4 sm:px-8 md:px-12 box-border">
             <!-- Project 3 -->
-            <div class="card relative bg-white border-[1.5px] border-[#18A0FB] rounded-none shadow-[0_10px_25px_rgba(24,160,251,0.06)] hover:shadow-[0_20px_45px_rgba(24,160,251,0.12)] hover:-translate-y-1.5 transition-all duration-300 w-full max-w-[760px] flex flex-col mx-auto">
+            <div class="card relative bg-white border-[1.5px] border-[#18A0FB] rounded-none shadow-[0_10px_25px_rgba(24,160,251,0.06)] hover:shadow-[0_20px_45px_rgba(24,160,251,0.12)] hover:-translate-y-1.5 transition-all duration-300 w-full max-w-[1020px] flex flex-col mx-auto">
               <!-- Figma corner selection handles -->
               <div class="figma-handle -top-[5px] -left-[5px]"></div>
               <div class="figma-handle -top-[5px] -right-[5px]"></div>
@@ -965,7 +1125,7 @@
               <div class="figma-handle -bottom-[5px] -right-[5px]"></div>
 
               <!-- Browser Mockup Wrapper -->
-              <div class="bg-[#F8FAFC] p-4 pb-0 border-b border-slate-100 flex-shrink-0">
+              <div class="bg-[#F8FAFC] p-2 xs:p-3 sm:p-4 pb-0 border-b border-slate-100 flex-shrink-0">
                 <div class="bg-white rounded-t-lg shadow-[0_8px_20px_rgba(0,0,0,0.02)] border-t border-x border-slate-200/80 overflow-hidden flex flex-col">
                   <!-- Browser Header -->
                   <div class="flex items-center justify-between bg-slate-50 px-3 py-2 border-b border-slate-200/50">
@@ -980,7 +1140,7 @@
                     <div class="w-6"></div>
                   </div>
                   <!-- Image Viewport -->
-                  <div class="card-image-slider relative h-[250px] sm:h-[320px] md:h-[380px] max-xs:h-[180px] overflow-hidden">
+                  <div class="card-image-slider relative h-[190px] xs:h-[240px] sm:h-[320px] md:h-[400px] lg:h-[460px] overflow-hidden">
                     <div class="card-images flex h-full relative">
                       <img src="assets/projects/app-pegawai.png" alt="App Pegawai Image 1" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
                       <img src="assets/projects/app-pegawai(2).png" alt="App Pegawai Image 2" style="display: none" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
@@ -994,10 +1154,10 @@
               </div>
 
               <!-- Card Body Content -->
-              <div class="card-content p-8 flex-grow flex flex-col text-left max-md:p-6 max-xs:p-5 bg-white">
-                <span class="inline-block px-2.5 py-0.5 bg-[#18A0FB]/10 border border-[#18A0FB]/20 rounded-sm text-[10px] font-extrabold text-[#18A0FB] mb-3 w-fit uppercase tracking-wider font-outfit">HR Platform</span>
-                <h3 class="text-2xl font-outfit font-black text-[#18A0FB] mb-3 hover:opacity-80 transition-opacity duration-200">App Pegawai</h3>
-                <p class="text-slate-500 font-sans text-[0.95rem] leading-relaxed mb-6 flex-grow font-semibold">
+              <div class="card-content p-4 xs:p-5 sm:p-6 md:p-8 flex-grow flex flex-col text-left bg-white">
+                <span class="inline-block px-2.5 py-0.5 bg-[#18A0FB]/10 border border-[#18A0FB]/20 rounded-sm text-[10px] sm:text-xs font-extrabold text-[#18A0FB] mb-2 sm:mb-3 w-fit uppercase tracking-wider font-outfit">HR Platform</span>
+                <h3 class="text-xl sm:text-2xl md:text-3xl font-outfit font-black text-[#18A0FB] mb-2 sm:mb-3 hover:opacity-80 transition-opacity duration-200">App Pegawai</h3>
+                <p class="text-slate-500 font-sans text-xs xs:text-sm sm:text-base leading-relaxed mb-4 sm:mb-6 flex-grow font-semibold">
                   App Pegawai is a web-based application that allows users to manage employees efficiently.
                 </p>
               </div>
@@ -1005,9 +1165,9 @@
           </div>
 
           <!-- Slide 4 -->
-          <div class="carousel-slide min-w-full shrink-0 flex justify-center items-center px-12 sm:px-16 box-border">
+          <div class="carousel-slide min-w-full shrink-0 flex justify-center items-center px-2 xs:px-4 sm:px-8 md:px-12 box-border">
             <!-- Project 4 -->
-            <div class="card relative bg-white border-[1.5px] border-[#18A0FB] rounded-none shadow-[0_10px_25px_rgba(24,160,251,0.06)] hover:shadow-[0_20px_45px_rgba(24,160,251,0.12)] hover:-translate-y-1.5 transition-all duration-300 w-full max-w-[760px] flex flex-col mx-auto">
+            <div class="card relative bg-white border-[1.5px] border-[#18A0FB] rounded-none shadow-[0_10px_25px_rgba(24,160,251,0.06)] hover:shadow-[0_20px_45px_rgba(24,160,251,0.12)] hover:-translate-y-1.5 transition-all duration-300 w-full max-w-[1020px] flex flex-col mx-auto">
               <!-- Figma corner selection handles -->
               <div class="figma-handle -top-[5px] -left-[5px]"></div>
               <div class="figma-handle -top-[5px] -right-[5px]"></div>
@@ -1015,7 +1175,7 @@
               <div class="figma-handle -bottom-[5px] -right-[5px]"></div>
 
               <!-- Browser Mockup Wrapper -->
-              <div class="bg-[#F8FAFC] p-4 pb-0 border-b border-slate-100 flex-shrink-0">
+              <div class="bg-[#F8FAFC] p-2 xs:p-3 sm:p-4 pb-0 border-b border-slate-100 flex-shrink-0">
                 <div class="bg-white rounded-t-lg shadow-[0_8px_20px_rgba(0,0,0,0.02)] border-t border-x border-slate-200/80 overflow-hidden flex flex-col">
                   <!-- Browser Header -->
                   <div class="flex items-center justify-between bg-slate-50 px-3 py-2 border-b border-slate-200/50">
@@ -1030,7 +1190,7 @@
                     <div class="w-6"></div>
                   </div>
                   <!-- Image Viewport -->
-                  <div class="card-image-slider relative h-[250px] sm:h-[320px] md:h-[380px] max-xs:h-[180px] overflow-hidden">
+                  <div class="card-image-slider relative h-[190px] xs:h-[240px] sm:h-[320px] md:h-[400px] lg:h-[460px] overflow-hidden">
                     <div class="card-images flex h-full relative">
                       <img src="assets/img/sigma.png" alt="Beasiswa Sigma Image 1" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
                       <img src="assets/img/sigma (2).png" alt="Beasiswa Sigma Image 2" style="display: none" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
@@ -1044,10 +1204,10 @@
               </div>
 
               <!-- Card Body Content -->
-              <div class="card-content p-8 flex-grow flex flex-col text-left max-md:p-6 max-xs:p-5 bg-white">
-                <span class="inline-block px-2.5 py-0.5 bg-[#18A0FB]/10 border border-[#18A0FB]/20 rounded-sm text-[10px] font-extrabold text-[#18A0FB] mb-3 w-fit uppercase tracking-wider font-outfit">Portal</span>
-                <h3 class="text-2xl font-outfit font-black text-[#18A0FB] mb-3 hover:opacity-80 transition-opacity duration-200">Beasiswa Sigma</h3>
-                <p class="text-slate-500 font-sans text-[0.95rem] leading-relaxed mb-6 flex-grow font-semibold">
+              <div class="card-content p-4 xs:p-5 sm:p-6 md:p-8 flex-grow flex flex-col text-left bg-white">
+                <span class="inline-block px-2.5 py-0.5 bg-[#18A0FB]/10 border border-[#18A0FB]/20 rounded-sm text-[10px] sm:text-xs font-extrabold text-[#18A0FB] mb-2 sm:mb-3 w-fit uppercase tracking-wider font-outfit">Portal</span>
+                <h3 class="text-xl sm:text-2xl md:text-3xl font-outfit font-black text-[#18A0FB] mb-2 sm:mb-3 hover:opacity-80 transition-opacity duration-200">Beasiswa Sigma</h3>
+                <p class="text-slate-500 font-sans text-xs xs:text-sm sm:text-base leading-relaxed mb-4 sm:mb-6 flex-grow font-semibold">
                   Beasiswa Sigma is a scholarship program aimed at outstanding students in the field of information technology.
                 </p>
               </div>
@@ -1055,9 +1215,9 @@
           </div>
 
           <!-- Slide 5 -->
-          <div class="carousel-slide min-w-full shrink-0 flex justify-center items-center px-12 sm:px-16 box-border">
+          <div class="carousel-slide min-w-full shrink-0 flex justify-center items-center px-2 xs:px-4 sm:px-8 md:px-12 box-border">
             <!-- Project 5 -->
-            <div class="card relative bg-white border-[1.5px] border-[#18A0FB] rounded-none shadow-[0_10px_25px_rgba(24,160,251,0.06)] hover:shadow-[0_20px_45px_rgba(24,160,251,0.12)] hover:-translate-y-1.5 transition-all duration-300 w-full max-w-[760px] flex flex-col mx-auto">
+            <div class="card relative bg-white border-[1.5px] border-[#18A0FB] rounded-none shadow-[0_10px_25px_rgba(24,160,251,0.06)] hover:shadow-[0_20px_45px_rgba(24,160,251,0.12)] hover:-translate-y-1.5 transition-all duration-300 w-full max-w-[1020px] flex flex-col mx-auto">
               <!-- Figma corner selection handles -->
               <div class="figma-handle -top-[5px] -left-[5px]"></div>
               <div class="figma-handle -top-[5px] -right-[5px]"></div>
@@ -1065,7 +1225,7 @@
               <div class="figma-handle -bottom-[5px] -right-[5px]"></div>
 
               <!-- Browser Mockup Wrapper -->
-              <div class="bg-[#F8FAFC] p-4 pb-0 border-b border-slate-100 flex-shrink-0">
+              <div class="bg-[#F8FAFC] p-2 xs:p-3 sm:p-4 pb-0 border-b border-slate-100 flex-shrink-0">
                 <div class="bg-white rounded-t-lg shadow-[0_8px_20px_rgba(0,0,0,0.02)] border-t border-x border-slate-200/80 overflow-hidden flex flex-col">
                   <!-- Browser Header -->
                   <div class="flex items-center justify-between bg-slate-50 px-3 py-2 border-b border-slate-200/50">
@@ -1080,7 +1240,7 @@
                     <div class="w-6"></div>
                   </div>
                   <!-- Image Viewport -->
-                  <div class="card-image-slider relative h-[250px] sm:h-[320px] md:h-[380px] max-xs:h-[180px] overflow-hidden">
+                  <div class="card-image-slider relative h-[190px] xs:h-[240px] sm:h-[320px] md:h-[400px] lg:h-[460px] overflow-hidden">
                     <div class="card-images flex h-full relative">
                       <img src="assets/projects/web-e-code.png" alt="Web E-Code Image 1" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
                     </div>
@@ -1089,10 +1249,10 @@
               </div>
 
               <!-- Card Body Content -->
-              <div class="card-content p-8 flex-grow flex flex-col text-left max-md:p-6 max-xs:p-5 bg-white">
-                <span class="inline-block px-2.5 py-0.5 bg-[#18A0FB]/10 border border-[#18A0FB]/20 rounded-sm text-[10px] font-extrabold text-[#18A0FB] mb-3 w-fit uppercase tracking-wider font-outfit">Web Platform</span>
-                <h3 class="text-2xl font-outfit font-black text-[#18A0FB] mb-3 hover:opacity-80 transition-opacity duration-200">Web E-Code</h3>
-                <p class="text-slate-500 font-sans text-[0.95rem] leading-relaxed mb-6 flex-grow font-semibold">
+              <div class="card-content p-4 xs:p-5 sm:p-6 md:p-8 flex-grow flex flex-col text-left bg-white">
+                <span class="inline-block px-2.5 py-0.5 bg-[#18A0FB]/10 border border-[#18A0FB]/20 rounded-sm text-[10px] sm:text-xs font-extrabold text-[#18A0FB] mb-2 sm:mb-3 w-fit uppercase tracking-wider font-outfit">Web Platform</span>
+                <h3 class="text-xl sm:text-2xl md:text-3xl font-outfit font-black text-[#18A0FB] mb-2 sm:mb-3 hover:opacity-80 transition-opacity duration-200">Web E-Code</h3>
+                <p class="text-slate-500 font-sans text-xs xs:text-sm sm:text-base leading-relaxed mb-4 sm:mb-6 flex-grow font-semibold">
                   Web E-Code is a platform for the software engineering research division of HIMIT PENS to innovate, collaborate, and showcase software solutions.
                 </p>
               </div>
@@ -1100,9 +1260,9 @@
           </div>
 
           <!-- Slide 6 -->
-          <div class="carousel-slide min-w-full shrink-0 flex justify-center items-center px-12 sm:px-16 box-border">
+          <div class="carousel-slide min-w-full shrink-0 flex justify-center items-center px-2 xs:px-4 sm:px-8 md:px-12 box-border">
             <!-- Project 6 -->
-            <div class="card relative bg-white border-[1.5px] border-[#18A0FB] rounded-none shadow-[0_10px_25px_rgba(24,160,251,0.06)] hover:shadow-[0_20px_45px_rgba(24,160,251,0.12)] hover:-translate-y-1.5 transition-all duration-300 w-full max-w-[760px] flex flex-col mx-auto">
+            <div class="card relative bg-white border-[1.5px] border-[#18A0FB] rounded-none shadow-[0_10px_25px_rgba(24,160,251,0.06)] hover:shadow-[0_20px_45px_rgba(24,160,251,0.12)] hover:-translate-y-1.5 transition-all duration-300 w-full max-w-[1020px] flex flex-col mx-auto">
               <!-- Figma corner selection handles -->
               <div class="figma-handle -top-[5px] -left-[5px]"></div>
               <div class="figma-handle -top-[5px] -right-[5px]"></div>
@@ -1110,7 +1270,7 @@
               <div class="figma-handle -bottom-[5px] -right-[5px]"></div>
 
               <!-- Browser Mockup Wrapper -->
-              <div class="bg-[#F8FAFC] p-4 pb-0 border-b border-slate-100 flex-shrink-0">
+              <div class="bg-[#F8FAFC] p-2 xs:p-3 sm:p-4 pb-0 border-b border-slate-100 flex-shrink-0">
                 <div class="bg-white rounded-t-lg shadow-[0_8px_20px_rgba(0,0,0,0.02)] border-t border-x border-slate-200/80 overflow-hidden flex flex-col">
                   <!-- Browser Header -->
                   <div class="flex items-center justify-between bg-slate-50 px-3 py-2 border-b border-slate-200/50">
@@ -1125,7 +1285,7 @@
                     <div class="w-6"></div>
                   </div>
                   <!-- Image Viewport -->
-                  <div class="card-image-slider relative h-[250px] sm:h-[320px] md:h-[380px] max-xs:h-[180px] overflow-hidden">
+                  <div class="card-image-slider relative h-[190px] xs:h-[240px] sm:h-[320px] md:h-[400px] lg:h-[460px] overflow-hidden">
                     <div class="card-images flex h-full relative">
                       <img src="assets/projects/dokumen generator.png" alt="Dokumen Generator Image 1" class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" />
                     </div>
@@ -1134,10 +1294,10 @@
               </div>
 
               <!-- Card Body Content -->
-              <div class="card-content p-8 flex-grow flex flex-col text-left max-md:p-6 max-xs:p-5 bg-white">
-                <span class="inline-block px-2.5 py-0.5 bg-[#18A0FB]/10 border border-[#18A0FB]/20 rounded-sm text-[10px] font-extrabold text-[#18A0FB] mb-3 w-fit uppercase tracking-wider font-outfit">Document Tool</span>
-                <h3 class="text-2xl font-outfit font-black text-[#18A0FB] mb-3 hover:opacity-80 transition-opacity duration-200">Dokumen Generator</h3>
-                <p class="text-slate-500 font-sans text-[0.95rem] leading-relaxed mb-6 flex-grow font-semibold">
+              <div class="card-content p-4 xs:p-5 sm:p-6 md:p-8 flex-grow flex flex-col text-left bg-white">
+                <span class="inline-block px-2.5 py-0.5 bg-[#18A0FB]/10 border border-[#18A0FB]/20 rounded-sm text-[10px] sm:text-xs font-extrabold text-[#18A0FB] mb-2 sm:mb-3 w-fit uppercase tracking-wider font-outfit">Document Tool</span>
+                <h3 class="text-xl sm:text-2xl md:text-3xl font-outfit font-black text-[#18A0FB] mb-2 sm:mb-3 hover:opacity-80 transition-opacity duration-200">Dokumen Generator</h3>
+                <p class="text-slate-500 font-sans text-xs xs:text-sm sm:text-base leading-relaxed mb-4 sm:mb-6 flex-grow font-semibold">
                   Dokumen Generator is a web application designed to automate and streamline the creation, formatting, and drafting of administrative letters.
                 </p>
               </div>
@@ -1145,7 +1305,7 @@
           </div>
         </div>
 
-        <button class="carousel-button next absolute top-1/2 -translate-y-1/2 w-12 h-12 bg-white/95 border border-slate-200/80 rounded-full flex items-center justify-center text-slate-600 shadow-md cursor-pointer z-10 transition-all duration-300 hover:bg-[#18A0FB] hover:text-white hover:border-[#18A0FB] hover:scale-105 active:scale-95 right-1 sm:right-3" aria-label="Next slide">
+        <button class="carousel-button next absolute top-1/2 -translate-y-1/2 w-8 h-8 xs:w-9 xs:h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 bg-white/90 sm:bg-white/95 border border-slate-200/80 rounded-full flex items-center justify-center text-slate-700 shadow-md cursor-pointer z-20 transition-all duration-300 hover:bg-[#18A0FB] hover:text-white hover:border-[#18A0FB] hover:scale-105 active:scale-95 text-xs sm:text-base right-1 xs:right-2 sm:right-3 md:right-4" aria-label="Next slide">
           &#10095;
         </button>
       </div>
@@ -1161,8 +1321,8 @@
     </section>
 
     <!-- Modernized Certificates Section -->
-    <section class="certificate-section py-24 px-5 min-h-screen flex flex-col justify-center items-center w-full bg-gradient-to-br from-[#081a2e] via-slate-900 to-[#0b2440] text-slate-100 overflow-hidden" id="certificate">
-      <h2 class="title-section reveal-on-scroll font-outfit text-4xl md:text-5xl font-black text-center mb-16 relative after:content-[''] after:block after:w-16 after:h-1.5 after:bg-[#18A0FB] after:mt-4 after:mx-auto after:rounded-full">Certificates</h2>
+    <section class="certificate-section py-16 md:py-20 px-4 sm:px-5 flex flex-col justify-center items-center w-full bg-white text-slate-800 overflow-hidden" id="certificate">
+      <h2 class="title-section reveal-on-scroll font-outfit text-3xl sm:text-4xl md:text-[42px] font-black text-center mb-8 sm:mb-10 relative after:content-[''] after:block after:w-14 after:h-1.5 after:bg-[#18A0FB] after:mt-3 after:mx-auto after:rounded-full">Certificates</h2>
       <div class="marquee-container reveal-scale delay-150 w-full overflow-hidden relative  max-md:hidden">
         <div class="marquee-track flex gap-8 py-2 w-max animate-marquee-left hover:[animation-play-state:paused] [will-change:transform]">
           <div class="flex gap-8 shrink-0">
@@ -1574,42 +1734,42 @@
     </section>
 
     <!-- Modernized Contact Section -->
-    <section class="contact-section py-24 px-5 flex flex-col justify-center items-center w-full bg-slate-50 text-slate-800 text-center min-h-[50vh]" id="contact">
-      <h2 class="title-section reveal-on-scroll font-outfit text-4xl md:text-5xl font-black text-center mb-16 relative after:content-[''] after:block after:w-16 after:h-1.5 after:bg-[#18A0FB] after:mt-4 after:mx-auto after:rounded-full">Contact Me</h2>
+    <section class="contact-section py-16 md:py-20 px-4 sm:px-5 flex flex-col justify-center items-center w-full bg-slate-50 text-slate-800 text-center" id="contact">
+      <h2 class="title-section reveal-on-scroll font-outfit text-3xl sm:text-4xl md:text-[42px] font-black text-center mb-8 sm:mb-10 relative after:content-[''] after:block after:w-14 after:h-1.5 after:bg-[#18A0FB] after:mt-3 after:mx-auto after:rounded-full">Contact Me</h2>
       
-      <div class="contact-info max-w-[1000px] mx-auto px-5 grid grid-cols-1 sm:grid-cols-3 gap-6 w-full">
+      <div class="contact-info max-w-[900px] mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 w-full">
         <!-- Phone Card -->
-        <div class="bg-white border border-slate-100 shadow-sm hover:shadow-xl rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-[#18A0FB]/20 group reveal-scale delay-100">
-          <div class="w-14 h-14 bg-[#18A0FB]/5 border border-[#18A0FB]/10 rounded-2xl flex items-center justify-center text-[#18A0FB] text-xl mb-4 group-hover:bg-[#18A0FB] group-hover:text-white transition-all duration-300">
+        <div class="bg-white border border-slate-100 shadow-sm hover:shadow-xl rounded-2xl p-6 sm:p-7 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-[#18A0FB]/20 group reveal-scale delay-100">
+          <div class="w-12 h-12 bg-[#18A0FB]/5 border border-[#18A0FB]/10 rounded-xl flex items-center justify-center text-[#18A0FB] text-lg mb-3 group-hover:bg-[#18A0FB] group-hover:text-white transition-all duration-300">
             <i class="fas fa-phone-alt"></i>
           </div>
           <span class="block text-xs font-semibold text-slate-400 uppercase tracking-widest mb-1">Phone</span>
-          <span class="font-outfit font-bold text-slate-800 text-lg">0831-1999-4736</span>
+          <span class="font-outfit font-bold text-slate-800 text-base sm:text-lg">0831-1999-4736</span>
         </div>
         
         <!-- Email Card -->
-        <div class="bg-white border border-slate-100 shadow-sm hover:shadow-xl rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-[#18A0FB]/20 group reveal-scale delay-200">
-          <div class="w-14 h-14 bg-[#18A0FB]/5 border border-[#18A0FB]/10 rounded-2xl flex items-center justify-center text-[#18A0FB] text-xl mb-4 group-hover:bg-[#18A0FB] group-hover:text-white transition-all duration-300">
+        <div class="bg-white border border-slate-100 shadow-sm hover:shadow-xl rounded-2xl p-6 sm:p-7 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-[#18A0FB]/20 group reveal-scale delay-200">
+          <div class="w-12 h-12 bg-[#18A0FB]/5 border border-[#18A0FB]/10 rounded-xl flex items-center justify-center text-[#18A0FB] text-lg mb-3 group-hover:bg-[#18A0FB] group-hover:text-white transition-all duration-300">
             <i class="fas fa-envelope"></i>
           </div>
           <span class="block text-xs font-semibold text-slate-400 uppercase tracking-widest mb-1">Email</span>
-          <a href="mailto:hrosihandanu@gmail.com" class="font-outfit font-bold text-slate-800 text-lg hover:text-[#18A0FB] transition-colors duration-200">hrosihandanu@gmail.com</a>
+          <a href="mailto:hrosihandanu@gmail.com" class="font-outfit font-bold text-slate-800 text-sm sm:text-base hover:text-[#18A0FB] transition-colors duration-200 break-all">hrosihandanu@gmail.com</a>
         </div>
         
         <!-- Location Card -->
-        <div class="bg-white border border-slate-100 shadow-sm hover:shadow-xl rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-[#18A0FB]/20 group reveal-scale delay-300">
-          <div class="w-14 h-14 bg-[#18A0FB]/5 border border-[#18A0FB]/10 rounded-2xl flex items-center justify-center text-[#18A0FB] text-xl mb-4 group-hover:bg-[#18A0FB] group-hover:text-white transition-all duration-300">
+        <div class="bg-white border border-slate-100 shadow-sm hover:shadow-xl rounded-2xl p-6 sm:p-7 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-[#18A0FB]/20 group reveal-scale delay-300">
+          <div class="w-12 h-12 bg-[#18A0FB]/5 border border-[#18A0FB]/10 rounded-xl flex items-center justify-center text-[#18A0FB] text-lg mb-3 group-hover:bg-[#18A0FB] group-hover:text-white transition-all duration-300">
             <i class="fas fa-map-marker-alt"></i>
           </div>
           <span class="block text-xs font-semibold text-slate-400 uppercase tracking-widest mb-1">Location</span>
-          <span class="font-outfit font-bold text-slate-800 text-lg">Surabaya, Indonesia</span>
+          <span class="font-outfit font-bold text-slate-800 text-base sm:text-lg">Surabaya, Indonesia</span>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer bg-[#F8FAFC] border-t border-slate-200 py-16 px-8 relative overflow-hidden">
-    <div class="max-w-[1200px] mx-auto flex flex-col gap-10 reveal-on-scroll">
+  <footer class="footer bg-[#F8FAFC] border-t border-slate-200 py-12 md:py-14 px-5 sm:px-8 relative overflow-hidden">
+    <div class="max-w-[1000px] mx-auto flex flex-col gap-8 reveal-on-scroll">
       
       <!-- Top Row -->
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 pb-8 border-b border-slate-200/60">
@@ -1827,6 +1987,32 @@
 
       if (nextBtn) nextBtn.addEventListener("click", nextSlide);
       if (prevBtn) prevBtn.addEventListener("click", prevSlide);
+
+      // Touch swipe gestures for mobile UX
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchEndX = 0;
+      let touchEndY = 0;
+
+      track.addEventListener("touchstart", function (e) {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+      }, { passive: true });
+
+      track.addEventListener("touchend", function (e) {
+        touchEndX = e.changedTouches[0].screenX;
+        touchEndY = e.changedTouches[0].screenY;
+        const diffX = touchEndX - touchStartX;
+        const diffY = touchEndY - touchStartY;
+        // If horizontal swipe is significant and exceeds vertical movement
+        if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+          if (diffX < 0) {
+            nextSlide();
+          } else {
+            prevSlide();
+          }
+        }
+      }, { passive: true });
 
       dots.forEach((dot) => {
         dot.addEventListener("click", function () {
@@ -2117,13 +2303,47 @@
         });
       });
 
-      // Scroll Reveal Entrance Observer
+      // ==========================================
+      // PROFESSIONAL SCROLL EXPERIENCE ENGINE
+      // ==========================================
+
+      // 1. Intersection Observer for Blur-to-Focus & 3D Tilt Reveals
       const revealElements = document.querySelectorAll(".reveal-on-scroll, .reveal-scale, .reveal-left, .reveal-right");
+      
+      // Animated Stat Number Counter function
+      function triggerNumberCounter(parent) {
+        const counters = parent.querySelectorAll("[data-counter]");
+        counters.forEach(counterEl => {
+          if (counterEl.dataset.counted) return;
+          counterEl.dataset.counted = "true";
+          const target = parseInt(counterEl.dataset.counter, 10);
+          const suffix = counterEl.dataset.suffix || "";
+          const duration = 1200;
+          const startTime = performance.now();
+
+          function update(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // easeOutCubic curve
+            const ease = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(ease * target);
+            counterEl.textContent = current + suffix;
+            if (progress < 1) {
+              requestAnimationFrame(update);
+            } else {
+              counterEl.textContent = target + suffix;
+            }
+          }
+          requestAnimationFrame(update);
+        });
+      }
+
       if ("IntersectionObserver" in window) {
         const observer = new IntersectionObserver((entries, obs) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add("in-view");
+              triggerNumberCounter(entry.target);
               obs.unobserve(entry.target);
             }
           });
@@ -2134,12 +2354,113 @@
 
         revealElements.forEach((el) => observer.observe(el));
       } else {
-        revealElements.forEach((el) => el.classList.add("in-view"));
+        revealElements.forEach((el) => {
+          el.classList.add("in-view");
+          triggerNumberCounter(el);
+        });
       }
 
-      // Smoke Cursor Trail Effect
-      (function initSmokeTrail() {
-        const canvas = document.getElementById("smoke-trail-canvas");
+      // 2. Scroll Progress, Scrollspy, Parallax, and Back-to-Top Controller
+      const progressBar = document.getElementById("scroll-progress-bar");
+      const backToTopBtn = document.getElementById("back-to-top");
+      const progressRing = document.getElementById("scroll-progress-ring");
+      const navbarHeader = document.querySelector("header.navbar");
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      let isScrollTicking = false;
+      function handleScrollUpdates() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+        // A. Top Reading Progress Bar
+        if (progressBar) {
+          progressBar.style.width = `${Math.min(Math.max(scrollPercent, 0), 100)}%`;
+        }
+
+        // B. Floating Back to Top Button
+        if (backToTopBtn && progressRing) {
+          if (scrollTop > 320) {
+            backToTopBtn.classList.remove("opacity-0", "pointer-events-none", "translate-y-4");
+            backToTopBtn.classList.add("opacity-100", "pointer-events-auto", "translate-y-0");
+          } else {
+            backToTopBtn.classList.add("opacity-0", "pointer-events-none", "translate-y-4");
+            backToTopBtn.classList.remove("opacity-100", "pointer-events-auto", "translate-y-0");
+          }
+          const offset = 100 - (scrollPercent * 1);
+          progressRing.style.strokeDashoffset = offset;
+        }
+
+        // C. Navbar Scrolled Glassmorphism State
+        if (navbarHeader) {
+          if (scrollTop > 40) {
+            navbarHeader.classList.add("scrolled");
+          } else {
+            navbarHeader.classList.remove("scrolled");
+          }
+        }
+
+        // D. Active Nav Link Scrollspy
+        let currentSectionId = "";
+        sections.forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= window.innerHeight * 0.35 && rect.bottom >= window.innerHeight * 0.2) {
+            currentSectionId = section.getAttribute("id");
+          }
+        });
+
+        if (currentSectionId) {
+          navLinks.forEach((link) => {
+            const href = link.getAttribute("href");
+            if (href === `#${currentSectionId}`) {
+              link.classList.add("active");
+            } else {
+              link.classList.remove("active");
+            }
+          });
+        }
+
+        // E. Subtle Parallax for Hero Ambient Watermarks & Circles
+        if (scrollTop < window.innerHeight * 1.2) {
+          const watermarkTop = document.querySelector(".watermark-top");
+          const watermarkBottom = document.querySelector(".watermark-bottom");
+          const bgCircles = document.querySelector(".background-circles");
+          if (watermarkTop) {
+            watermarkTop.style.transform = `translate(-50%, calc(-50% - 5px + ${scrollTop * 0.08}px)) rotate(-5deg)`;
+          }
+          if (watermarkBottom) {
+            watermarkBottom.style.transform = `translate(-50%, calc(-50% + 5px - ${scrollTop * 0.08}px)) rotate(-5deg)`;
+          }
+          if (bgCircles) {
+            bgCircles.style.transform = `translate(-50%, calc(-50% + ${scrollTop * 0.12}px))`;
+          }
+        }
+
+        isScrollTicking = false;
+      }
+
+      window.addEventListener("scroll", () => {
+        if (!isScrollTicking) {
+          requestAnimationFrame(handleScrollUpdates);
+          isScrollTicking = true;
+        }
+      }, { passive: true });
+
+      handleScrollUpdates();
+
+      if (backToTopBtn) {
+        backToTopBtn.addEventListener("click", () => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+        });
+      }
+
+      // Stars & Sparkles Cursor Trail Effect
+      (function initStarsTrail() {
+        const canvas = document.getElementById("stars-trail-canvas");
         if (!canvas) return;
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
@@ -2154,52 +2475,80 @@
         window.addEventListener("resize", resizeCanvas);
 
         const particles = [];
-        const MAX_PARTICLES = 90;
+        const MAX_PARTICLES = 110;
         let lastX = null;
         let lastY = null;
         let isLoopRunning = false;
 
-        // Smoke color palette: ethereal blend of brand Figma-blue, soft purple, sky cyan, and vapor mist
-        const colors = [
-          { r: 24, g: 160, b: 251 },  // Figma Blue
-          { r: 162, g: 89, b: 255 },  // Purple Accent
-          { r: 56, g: 189, b: 248 },  // Sky Cyan
-          { r: 148, g: 163, b: 184 }, // Slate Mist
-          { r: 99, g: 102, b: 241 }   // Indigo Fog
+        // Soft Pastel Starlight Palette: STRICTLY Blue, Green, and Purple ONLY (Soft & Ambient)
+        const starColors = [
+          // Soft Pastel Blue shades
+          { r: 125, g: 211, b: 252 },  // Soft Sky Blue (#7DD3FC)
+          { r: 147, g: 197, b: 253 },  // Gentle Baby Blue (#93C5FD)
+          { r: 96,  g: 165, b: 250 },  // Airy Azure (#60A5FA)
+          { r: 186, g: 230, b: 253 },  // Pale Ice Blue (#BAE6FD)
+
+          // Soft Pastel Green shades
+          { r: 110, g: 231, b: 183 },  // Soft Mint Green (#6EE7B7)
+          { r: 134, g: 239, b: 172 },  // Gentle Pastel Green (#86EFAC)
+          { r: 167, g: 243, b: 208 },  // Pale Seafoam Mint (#A7F3D0)
+          { r: 52,  g: 211, b: 153 },  // Soft Emerald (#34D399)
+
+          // Soft Pastel Purple shades
+          { r: 216, g: 180, b: 254 },  // Soft Lavender (#D8B4FE)
+          { r: 196, g: 181, b: 253 },  // Gentle Lilac (#C4B5FD)
+          { r: 167, g: 139, b: 250 },  // Soft Amethyst (#A78BFA)
+          { r: 233, g: 213, b: 255 }   // Pale Wisteria (#E9D5FF)
         ];
 
-        function createParticle(x, y, dx = 0, dy = 0) {
+        function createParticle(x, y, dx = 0, dy = 0, speedMult = 1) {
           if (particles.length >= MAX_PARTICLES) {
             particles.shift();
           }
 
-          const color = colors[Math.floor(Math.random() * colors.length)];
-          const initialRadius = 7 + Math.random() * 8;
-          const maxRadius = 30 + Math.random() * 25;
-          const life = 1.0;
-          const decay = 0.014 + Math.random() * 0.012; // lasts ~40-70 frames (~0.7s - 1.2s)
-          const baseAlpha = 0.30 + Math.random() * 0.15;
+          const randType = Math.random();
+          // 55% 4-point sparkle stars, 25% 5-point mini stars, 20% stardust glitter dots
+          let type = 'sparkle';
+          if (randType > 0.75) type = 'classic';
+          else if (randType > 0.55) type = 'dot';
+
+          const color = starColors[Math.floor(Math.random() * starColors.length)];
+          const baseSize = type === 'dot'
+            ? 1.2 + Math.random() * 1.6
+            : (type === 'sparkle' ? 4.5 + Math.random() * 4.5 : 4 + Math.random() * 3.5);
+
+          const spreadAngle = Math.random() * Math.PI * 2;
+          const spreadSpeed = (0.5 + Math.random() * 1.8) * speedMult;
+          const vx = Math.cos(spreadAngle) * spreadSpeed + (dx * 0.08);
+          const vy = Math.sin(spreadAngle) * spreadSpeed + (dy * 0.08);
 
           particles.push({
             x: x + (Math.random() - 0.5) * 8,
             y: y + (Math.random() - 0.5) * 8,
-            vx: (Math.random() - 0.5) * 0.7 + (dx * 0.05),
-            vy: -0.4 - Math.random() * 0.8 + (dy * 0.05), // naturally floats upward
-            radius: initialRadius,
-            maxRadius: maxRadius,
-            growth: 0.5 + Math.random() * 0.45,
-            life: life,
-            decay: decay,
-            baseAlpha: baseAlpha,
+            vx: vx,
+            vy: vy,
+            type: type,
+            baseSize: baseSize,
+            life: 1.0,
+            decay: 0.016 + Math.random() * 0.016, // lasts ~35-65 frames (~0.6s - 1.0s)
             rotation: Math.random() * Math.PI * 2,
-            spin: (Math.random() - 0.5) * 0.025,
+            spin: (Math.random() - 0.5) * 0.12,
+            twinkleOffset: Math.random() * Math.PI * 2,
+            twinkleSpeed: 0.22 + Math.random() * 0.18,
+            age: 0,
             r: color.r,
             g: color.g,
             b: color.b
           });
         }
 
-        function addSmoke(x, y) {
+        function burstStars(x, y, count = 10) {
+          for (let i = 0; i < count; i++) {
+            createParticle(x, y, 0, 0, 2.2);
+          }
+        }
+
+        function addStars(x, y) {
           if (lastX === null || lastY === null) {
             lastX = x;
             lastY = y;
@@ -2211,15 +2560,15 @@
           const dy = y - lastY;
           const dist = Math.hypot(dx, dy);
 
-          if (dist > 160) {
+          if (dist > 180) {
             lastX = x;
             lastY = y;
             createParticle(x, y);
             return;
           }
 
-          // Interpolate for ultra-smooth smoke stream when cursor moves fast
-          const steps = Math.min(Math.max(Math.floor(dist / 9), 1), 6);
+          // Smooth interpolation so fast cursor moves create a continuous sparkling trail
+          const steps = Math.min(Math.max(Math.floor(dist / 11), 1), 7);
           for (let i = 1; i <= steps; i++) {
             const px = lastX + (dx / steps) * i;
             const py = lastY + (dy / steps) * i;
@@ -2242,6 +2591,7 @@
 
           for (let i = particles.length - 1; i >= 0; i--) {
             const p = particles[i];
+            p.age++;
             p.life -= p.decay;
 
             if (p.life <= 0) {
@@ -2249,15 +2599,21 @@
               continue;
             }
 
+            // Physics: momentum, air drag, subtle stardust gravity
             p.x += p.vx;
             p.y += p.vy;
-            p.vx *= 0.985;
-            p.vy *= 0.985;
-            p.radius = Math.min(p.radius + p.growth, p.maxRadius);
+            p.vx *= 0.955;
+            p.vy *= 0.955;
+            p.vy += 0.038;
             p.rotation += p.spin;
 
-            const currentAlpha = p.baseAlpha * p.life;
-            if (currentAlpha <= 0.005) {
+            // Soft opacity curve - gentle, ethereal, never blinding
+            const shimmer = 0.85 + 0.15 * Math.sin(p.age * p.twinkleSpeed + p.twinkleOffset);
+            // Ambient soft peak opacity at 0.42 max for a delicate effect
+            const softAlpha = Math.min(Math.max(p.life * shimmer, 0), 1) * 0.42;
+            const currentSize = p.baseSize * Math.max(p.life, 0.1);
+
+            if (softAlpha <= 0.005) {
               particles.splice(i, 1);
               continue;
             }
@@ -2266,17 +2622,56 @@
             ctx.translate(p.x, p.y);
             ctx.rotate(p.rotation);
 
-            // Soft radial gradient for ethereal billowing smoke
-            const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, p.radius);
-            grad.addColorStop(0, `rgba(${p.r}, ${p.g}, ${p.b}, ${currentAlpha.toFixed(3)})`);
-            grad.addColorStop(0.35, `rgba(${p.r}, ${p.g}, ${p.b}, ${(currentAlpha * 0.6).toFixed(3)})`);
-            grad.addColorStop(0.7, `rgba(${p.r}, ${p.g}, ${p.b}, ${(currentAlpha * 0.18).toFixed(3)})`);
-            grad.addColorStop(1, `rgba(${p.r}, ${p.g}, ${p.b}, 0)`);
+            // Soft diffuse ambient bloom
+            ctx.shadowColor = `rgba(${p.r}, ${p.g}, ${p.b}, ${(softAlpha * 0.8).toFixed(3)})`;
+            ctx.shadowBlur = 9;
+            ctx.fillStyle = `rgba(${p.r}, ${p.g}, ${p.b}, ${softAlpha.toFixed(3)})`;
 
-            ctx.fillStyle = grad;
-            ctx.beginPath();
-            ctx.arc(0, 0, p.radius, 0, Math.PI * 2);
-            ctx.fill();
+            if (p.type === 'sparkle') {
+              // 4-point flare sparkle star with soft feathered curve
+              ctx.beginPath();
+              ctx.moveTo(0, -currentSize);
+              ctx.quadraticCurveTo(0, 0, currentSize, 0);
+              ctx.quadraticCurveTo(0, 0, 0, currentSize);
+              ctx.quadraticCurveTo(0, 0, -currentSize, 0);
+              ctx.quadraticCurveTo(0, 0, 0, -currentSize);
+              ctx.closePath();
+              ctx.fill();
+
+              // Soft glowing center halo matching pastel star hue
+              ctx.shadowBlur = 4;
+              ctx.fillStyle = `rgba(${Math.min(p.r + 25, 255)}, ${Math.min(p.g + 25, 255)}, ${Math.min(p.b + 25, 255)}, ${(softAlpha * 0.85).toFixed(3)})`;
+              ctx.beginPath();
+              ctx.arc(0, 0, currentSize * 0.22, 0, Math.PI * 2);
+              ctx.fill();
+            } else if (p.type === 'classic') {
+              // 5-point star
+              const innerR = currentSize * 0.44;
+              ctx.beginPath();
+              for (let s = 0; s < 10; s++) {
+                const angle = (s * Math.PI) / 5 - Math.PI / 2;
+                const rad = s % 2 === 0 ? currentSize : innerR;
+                const sx = Math.cos(angle) * rad;
+                const sy = Math.sin(angle) * rad;
+                if (s === 0) ctx.moveTo(sx, sy);
+                else ctx.lineTo(sx, sy);
+              }
+              ctx.closePath();
+              ctx.fill();
+
+              // Soft center halo
+              ctx.shadowBlur = 3;
+              ctx.fillStyle = `rgba(${Math.min(p.r + 25, 255)}, ${Math.min(p.g + 25, 255)}, ${Math.min(p.b + 25, 255)}, ${(softAlpha * 0.8).toFixed(3)})`;
+              ctx.beginPath();
+              ctx.arc(0, 0, currentSize * 0.2, 0, Math.PI * 2);
+              ctx.fill();
+            } else {
+              // Glitter stardust dot - soft translucent circular glow
+              ctx.beginPath();
+              ctx.arc(0, 0, currentSize, 0, Math.PI * 2);
+              ctx.fill();
+            }
+
             ctx.restore();
           }
 
@@ -2289,7 +2684,14 @@
         }
 
         window.addEventListener("mousemove", (e) => {
-          addSmoke(e.clientX, e.clientY);
+          addStars(e.clientX, e.clientY);
+          startLoop();
+        }, { passive: true });
+
+        // Burst sparkling stars on click for extra visual delight
+        window.addEventListener("click", (e) => {
+          if (e.target.closest && (e.target.closest(".comment-popover") || e.target.closest(".figma-toolbar"))) return;
+          burstStars(e.clientX, e.clientY, 10);
           startLoop();
         }, { passive: true });
 
@@ -2300,7 +2702,7 @@
 
         window.addEventListener("touchmove", (e) => {
           if (e.touches && e.touches.length > 0) {
-            addSmoke(e.touches[0].clientX, e.touches[0].clientY);
+            addStars(e.touches[0].clientX, e.touches[0].clientY);
             startLoop();
           }
         }, { passive: true });
@@ -2313,8 +2715,17 @@
     });
   </script>
 
-  <!-- Smoke Particle Trail Canvas -->
-  <canvas id="smoke-trail-canvas" class="fixed inset-0 pointer-events-none z-[9998]" aria-hidden="true"></canvas>
+  <!-- Floating Back to Top Button with Circular Progress Ring -->
+  <button id="back-to-top" class="fixed bottom-6 right-6 max-md:bottom-20 max-md:right-4 z-[9990] w-12 h-12 rounded-full bg-white/95 backdrop-blur-md border border-slate-200/80 shadow-[0_10px_25px_rgba(15,23,42,0.1)] flex items-center justify-center text-slate-700 opacity-0 pointer-events-none translate-y-4 transition-all duration-300 hover:scale-110 hover:text-[#18A0FB] hover:border-[#18A0FB]/40 group" aria-label="Back to top">
+    <svg class="w-full h-full -rotate-90 p-1" viewBox="0 0 36 36">
+      <path class="text-slate-100" stroke-width="2.6" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+      <path id="scroll-progress-ring" class="text-[#18A0FB] transition-all duration-75" stroke-width="2.6" stroke-dasharray="100, 100" stroke-dashoffset="100" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+    </svg>
+    <i class="fas fa-arrow-up text-xs absolute group-hover:-translate-y-0.5 transition-transform duration-200 text-slate-700 group-hover:text-[#18A0FB]"></i>
+  </button>
+
+  <!-- Stars & Sparkles Particle Trail Canvas -->
+  <canvas id="stars-trail-canvas" class="fixed inset-0 pointer-events-none z-[9998]" aria-hidden="true"></canvas>
 
   <!-- Floating Figma-style Toolbar -->
   <div class="figma-toolbar fixed bottom-6 left-1/2 -translate-x-1/2 z-[9999] bg-[#2C2C2C]/95 backdrop-blur-md border border-white/10 px-4 py-2 rounded-xl shadow-[0_15px_30px_rgba(0,0,0,0.25)] flex items-center gap-1.5 text-white max-xs:px-3 max-xs:gap-1">
